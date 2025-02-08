@@ -1,7 +1,14 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useColorScheme } from "react-native";
 
 export default function TabsLayout() {
+  const colorScheme = useColorScheme();
+
+  const themeBackgroundStyle = colorScheme === "light" ? "#949D6A" : "#5A6340";
+  const themeBarActiveStyle = colorScheme === "light" ? "#F2BB05" : "#B28500";
+  const themeBarInactiveStyle = colorScheme === "light" ? "#F1EDEE" : "#D7CDCC";
+
   return (
     <Tabs
       screenOptions={({ route }) => ({
@@ -18,8 +25,12 @@ export default function TabsLayout() {
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "#000000",
-        tabBarInactiveTintColor: "gray",
+        tabBarActiveTintColor: themeBarActiveStyle,
+        tabBarInactiveTintColor: themeBarInactiveStyle,
+        tabBarStyle: {
+          backgroundColor: themeBackgroundStyle,
+          borderColor: themeBackgroundStyle,
+        },
         headerShown: false,
       })}
     >
