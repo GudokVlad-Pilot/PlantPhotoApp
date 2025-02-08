@@ -7,7 +7,21 @@ export default function PlantsLayout() {
         <Stack.Screen
             name="index"
             options={{
-                title: 'Plants',
+                title: 'List',
+                headerShown: false
+            }}
+        />
+        <Stack.Screen
+            name="scan"
+            options={{
+                title: 'Scan',
+                headerShown: false
+            }}
+        />
+        <Stack.Screen
+            name="plant/[id]"
+            options={{ 
+                title: 'Detail',
                 headerShown: false
             }}
         />

@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-export default function ListView() {
+export default function DetailView() {
   return (
     <View
       style={{
@@ -9,7 +9,7 @@ export default function ListView() {
         alignItems: "center",
       }}
     >
-      <Text>List View</Text>
+      <Text>Detail View</Text>
     </View>
   );
 }

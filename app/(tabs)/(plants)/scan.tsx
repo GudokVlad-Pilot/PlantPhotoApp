@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text} from "react-native";
 
-export default function SettingsView() {
+export default function ScanView() {
   return (
     <View>
-      <Text>Settings View</Text>
+      <Text>Scan View</Text>
     </View>
   );
 }
