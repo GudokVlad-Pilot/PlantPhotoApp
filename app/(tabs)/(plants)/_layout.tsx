@@ -25,19 +25,19 @@ export default function PlantsLayout() {
         <Stack.Screen
           name="index"
           options={{
-            title: "List",
+            title: "Plant Collection",
           }}
         />
         <Stack.Screen
           name="scan"
           options={{
-            title: "Scan",
+            title: "Add New Plant",
           }}
         />
         <Stack.Screen
           name="plant/[id]"
           options={{
-            title: "Detail",
+            title: "Plant Details",
           }}
         />
       </Stack>

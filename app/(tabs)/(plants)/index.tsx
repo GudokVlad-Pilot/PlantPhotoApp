@@ -25,9 +25,9 @@ export default function ListView() {
     colorScheme === "light" ? styles.lightCardText : styles.darkCardText;
   const themeDateText =
     colorScheme === "light" ? styles.lightDateText : styles.darkDateText;
-    const themeButton =
+  const themeButton =
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
-    const themeButtonText =
+  const themeButtonText =
     colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
 
   const { plants } = usePlants();
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
   },
-  lightCardText: { fontSize: 18, color: "#2A2B2E" },
+  lightCardText: { fontSize: 18, color: "#2A2B2E", marginVertical: 10 },
   darkCardText: { fontSize: 18, color: "#2E2A2B" },
   plantImage: {
     width: cardWidth - 20,
@@ -158,8 +158,8 @@ const styles = StyleSheet.create({
   },
   lightButtonText: { color: "#F1EDEE", fontSize: 16 },
   darkButtonText: { color: "#E9DEDD", fontSize: 16 },
-  lightDateText: { fontSize: 12, color: "#2A2B2E" },
-  darkDateText: { fontSize: 12, color: "#2E2A2B" },
+  lightDateText: { fontSize: 12, color: "#2A2B2E", alignSelf: "flex-end", marginTop: "auto"  },
+  darkDateText: { fontSize: 12, color: "#2E2A2B", alignSelf: "flex-end", marginTop: "auto"  },
   lightContainer: {
     backgroundColor: "#F1EDEE",
     flex: 1,
