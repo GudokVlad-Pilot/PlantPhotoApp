@@ -1,30 +1,30 @@
 import React from "react";
 import { Stack } from "expo-router";
+import { PlantProvider } from "./plantContext/PlantContext";
 
 export default function PlantsLayout() {
   return (
-    <Stack>
+    <PlantProvider>
+      <Stack>
         <Stack.Screen
-            name="index"
-            options={{
-                title: 'List',
-                headerShown: false
-            }}
+          name="index"
+          options={{
+            title: "List",
+          }}
         />
         <Stack.Screen
-            name="scan"
-            options={{
-                title: 'Scan',
-                headerShown: false
-            }}
+          name="scan"
+          options={{
+            title: "Scan",
+          }}
         />
         <Stack.Screen
-            name="plant/[id]"
-            options={{ 
-                title: 'Detail',
-                headerShown: false
-            }}
+          name="plant/[id]"
+          options={{
+            title: "Detail",
+          }}
         />
-    </Stack>
+      </Stack>
+    </PlantProvider>
   );
 }

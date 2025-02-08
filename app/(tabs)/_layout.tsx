@@ -9,14 +9,13 @@ export default function TabsLayout() {
           let iconName: keyof typeof Ionicons.glyphMap;
           if (route.name === "(plants)") {
             iconName = "leaf";
-        } else if (route.name === "profile") {
+          } else if (route.name === "profile") {
             iconName = "person";
-        } else if (route.name === "settings") {
+          } else if (route.name === "settings") {
             iconName = "settings";
-        } else {
+          } else {
             iconName = "ellipse";
-        }
-
+          }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: "#000000",
@@ -26,7 +25,7 @@ export default function TabsLayout() {
     >
       <Tabs.Screen name="(plants)" options={{ title: "List" }} />
       <Tabs.Screen name="profile" options={{ title: "Profile" }} />
-      <Tabs.Screen name="settings" options={{ title: "Settings" }} />   
+      <Tabs.Screen name="settings" options={{ title: "Settings" }} />
     </Tabs>
   );
 }
