@@ -24,6 +24,7 @@ export default function DetailView() {
   );
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
+  
 
   useEffect(() => {
     if (plant) {

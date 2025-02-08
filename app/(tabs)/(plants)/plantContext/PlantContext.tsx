@@ -5,6 +5,7 @@ type Plant = {
   name: string;
   notes?: string;
   plantPicture?: string;
+  addedAt: string;
 };
 
 type PlantContextType = {
@@ -29,6 +30,7 @@ export const PlantProvider = ({ children }: { children: ReactNode }) => {
       name,
       notes,
       plantPicture,
+      addedAt: new Date().toISOString(),
     };
     setPlants([...plants, newPlant]);
   };
@@ -55,7 +57,6 @@ export const PlantProvider = ({ children }: { children: ReactNode }) => {
 
 export const usePlants = () => {
   const context = useContext(PlantContext);
-  if (!context)
-    throw new Error("PlantProvider should be used");
+  if (!context) throw new Error("PlantProvider should be used");
   return context;
 };

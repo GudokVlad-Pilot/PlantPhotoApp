@@ -15,6 +15,10 @@ import { useNavigation } from "@react-navigation/native";
 export default function ListView() {
   const { plants } = usePlants();
   const navigation = useNavigation();
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString() + " " + date.toLocaleTimeString();
+  };
 
   useEffect(() => {
     const backAction = () => {
@@ -57,6 +61,11 @@ export default function ListView() {
                 />
               )}
               <Text style={styles.cardText}>{item.name}</Text>
+              {item.addedAt && (
+                <Text style={styles.dateText}>
+                  Added: {formatDate(item.addedAt)}
+                </Text>
+              )}
             </TouchableOpacity>
           </Link>
         )}
@@ -83,7 +92,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   cardText: { fontSize: 18, marginLeft: 10 },
-  plantImage: { width: 50, height: 50,},
+  plantImage: { width: 50, height: 50 },
   button: {
     marginTop: 20,
     paddingVertical: 10,
@@ -93,4 +102,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   buttonText: { color: "#FFFFFF", fontSize: 16 },
+  dateText: { fontSize: 18 },
 });
