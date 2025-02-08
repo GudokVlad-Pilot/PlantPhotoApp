@@ -21,19 +21,19 @@ export default function ListView() {
     colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
   const themeCardStyle =
     colorScheme === "light" ? styles.lightCard : styles.darkCard;
-    const themeCardText =
+  const themeCardText =
     colorScheme === "light" ? styles.lightCardText : styles.darkCardText;
-    const themeDateText =
+  const themeDateText =
     colorScheme === "light" ? styles.lightDateText : styles.darkDateText;
 
   const { plants } = usePlants();
   const navigation = useNavigation();
   const formatDate = (date: string | Date) => {
     const newDate = new Date(date);
-    return newDate.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
+    return newDate.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -71,18 +71,23 @@ export default function ListView() {
             asChild
           >
             <TouchableOpacity style={themeCardStyle}>
-              {item.plantPicture && (
+              {item.plantPicture ? (
                 <Image
                   source={{ uri: item.plantPicture }}
                   style={styles.plantImage}
                 />
+              ) : (
+                <Image
+                  source={require("../../../assets/images/plants.png")}
+                  style={styles.plantImage}
+                />
               )}
-                <Text style={themeCardText}>{item.name}</Text>
-                {item.addedAt && (
-                  <Text style={themeDateText}>
-                    Added: {formatDate(item.addedAt)}
-                  </Text>
-                )}
+              <Text style={themeCardText}>{item.name}</Text>
+              {item.addedAt && (
+                <Text style={themeDateText}>
+                  Added: {formatDate(item.addedAt)}
+                </Text>
+              )}
             </TouchableOpacity>
           </Link>
         )}
