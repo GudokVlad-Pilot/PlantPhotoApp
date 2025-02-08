@@ -25,6 +25,10 @@ export default function ListView() {
     colorScheme === "light" ? styles.lightCardText : styles.darkCardText;
   const themeDateText =
     colorScheme === "light" ? styles.lightDateText : styles.darkDateText;
+    const themeButton =
+    colorScheme === "light" ? styles.lightButton : styles.darkButton;
+    const themeButtonText =
+    colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
 
   const { plants } = usePlants();
   const navigation = useNavigation();
@@ -94,8 +98,8 @@ export default function ListView() {
       />
 
       <Link href="/scan" asChild>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Add Plant</Text>
+        <TouchableOpacity style={themeButton}>
+          <Text style={themeButtonText}>Add Plant</Text>
         </TouchableOpacity>
       </Link>
     </View>
@@ -136,15 +140,24 @@ const styles = StyleSheet.create({
     height: cardWidth - 20,
     borderRadius: 10,
   },
-  button: {
+  lightButton: {
     marginTop: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: "blue",
-    borderRadius: 5,
+    backgroundColor: "#F2BB05",
+    borderRadius: 10,
     alignSelf: "center",
   },
-  buttonText: { color: "#FFFFFF", fontSize: 16 },
+  darkButton: {
+    marginTop: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#B28500",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  lightButtonText: { color: "#F1EDEE", fontSize: 16 },
+  darkButtonText: { color: "#E9DEDD", fontSize: 16 },
   lightDateText: { fontSize: 12, color: "#2A2B2E" },
   darkDateText: { fontSize: 12, color: "#2E2A2B" },
   lightContainer: {
