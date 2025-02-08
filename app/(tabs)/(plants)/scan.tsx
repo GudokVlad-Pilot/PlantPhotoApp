@@ -25,6 +25,10 @@ export default function ScanView() {
     colorScheme === "light" ? styles.lightImagePicker : styles.darkImagePicker;
   const themeImageText =
     colorScheme === "light" ? styles.lightImageText : styles.darkImageText;
+    const themeInput =
+    colorScheme === "light" ? styles.lightInput : styles.darkInput;
+    const themePlaceholderColor =
+    colorScheme === "light" ? "#2A2B2E" : "#E9DEDD";
 
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
@@ -124,17 +128,19 @@ export default function ScanView() {
 
       <TextInput
         placeholder="Plant name"
+        placeholderTextColor={themePlaceholderColor}
         value={name}
         onChangeText={setName}
-        style={styles.input}
+        style={themeInput}
         multiline={true}
       />
 
       <TextInput
         placeholder="Notes (optional)"
+        placeholderTextColor={themePlaceholderColor}
         value={notes}
         onChangeText={setNotes}
-        style={styles.input}
+        style={themeInput}
         multiline={true}
       />
 
@@ -184,11 +190,21 @@ const styles = StyleSheet.create({
   lightImageText: { textAlign: "center", color: "#2A2B2E", fontSize: 18 },
   darkImageText: { textAlign: "center", color: "#E9DEDD", fontSize: 18 },
   image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
-  input: {
+  lightInput: {
     width: "100%",
     padding: 10,
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: "#2A2B2E",
+    color: "#2A2B2E",
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  darkInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#E9DEDD",
+    color: "#E9DEDD",
     borderRadius: 5,
     marginBottom: 15,
   },
