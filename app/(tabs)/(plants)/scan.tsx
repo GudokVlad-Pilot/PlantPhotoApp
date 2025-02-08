@@ -9,12 +9,23 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  useColorScheme,
+  Dimensions,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "./plantContext/PlantContext";
 import { useRouter } from "expo-router";
 
 export default function ScanView() {
+  const colorScheme = useColorScheme();
+
+  const themeContainerStyle =
+    colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
+  const themeImagePicker =
+    colorScheme === "light" ? styles.lightImagePicker : styles.darkImagePicker;
+  const themeImageText =
+    colorScheme === "light" ? styles.lightImageText : styles.darkImageText;
+
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
   const [plantPicture, setPlantPicture] = useState<string | null>(null);
@@ -94,8 +105,6 @@ export default function ScanView() {
           },
           {
             text: "Close",
-            style: "cancel",
-            onPress: () => console.log("Image selection canceled."),
           },
         ],
         { cancelable: true }
@@ -104,14 +113,12 @@ export default function ScanView() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Add new plant</Text>
-
-      <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
+    <View style={themeContainerStyle}>
+      <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
         {plantPicture ? (
           <Image source={{ uri: plantPicture }} style={styles.image} />
         ) : (
-          <Text style={styles.imageText}>Add plant picture</Text>
+          <Text style={themeImageText}>Add plant picture (optional)</Text>
         )}
       </TouchableOpacity>
 
@@ -120,6 +127,7 @@ export default function ScanView() {
         value={name}
         onChangeText={setName}
         style={styles.input}
+        multiline={true}
       />
 
       <TextInput
@@ -127,6 +135,7 @@ export default function ScanView() {
         value={notes}
         onChangeText={setNotes}
         style={styles.input}
+        multiline={true}
       />
 
       <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
@@ -136,14 +145,45 @@ export default function ScanView() {
   );
 }
 
+const windowWidth = Dimensions.get("window").width;
+const imageWidth = windowWidth / 2;
+
 const styles = StyleSheet.create({
-  container: {
+  lightContainer: {
+    backgroundColor: "#F1EDEE",
     flex: 1,
+    padding: 20,
+    alignItems: "center",
+  },
+  darkContainer: {
+    backgroundColor: "#2E2A2B",
+    flex: 1,
+    padding: 20,
+    alignItems: "center",
+  },
+  lightImagePicker: {
+    width: imageWidth,
+    height: imageWidth,
+    borderWidth: 1,
+    borderColor: "#2A2B2E",
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
+    marginBottom: 20,
+    borderRadius: 10,
   },
-  title: { fontSize: 24, marginBottom: 20 },
+  darkImagePicker: {
+    width: imageWidth,
+    height: imageWidth,
+    borderWidth: 1,
+    borderColor: "#E9DEDD",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    borderRadius: 10,
+  },
+  lightImageText: { textAlign: "center", color: "#2A2B2E", fontSize: 18 },
+  darkImageText: { textAlign: "center", color: "#E9DEDD", fontSize: 18 },
+  image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
   input: {
     width: "100%",
     padding: 10,
@@ -152,17 +192,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 15,
   },
-  imagePicker: {
-    width: 150,
-    height: 150,
-    borderWidth: 1,
-    borderColor: "gray",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  image: { width: 150, height: 150 },
-  imageText: { textAlign: "center", color: "#000000" },
   saveButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,

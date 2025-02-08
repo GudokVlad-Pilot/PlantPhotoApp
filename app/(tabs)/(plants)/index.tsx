@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   lightCardText: { fontSize: 18, color: "#2A2B2E", marginVertical: 10 },
-  darkCardText: { fontSize: 18, color: "#2E2A2B" },
+  darkCardText: { fontSize: 18, color: "#2E2A2B", marginVertical: 10 },
   plantImage: {
     width: cardWidth - 20,
     height: cardWidth - 20,
