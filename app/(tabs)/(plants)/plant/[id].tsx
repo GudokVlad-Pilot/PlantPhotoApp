@@ -24,9 +24,11 @@ export default function DetailView() {
     colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
   const themeButton =
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
-    const themeCancelButton =
-    colorScheme === "light" ? styles.lightCancelButton : styles.darkCancelButton;
-    const themeSaveButton =
+  const themeCancelButton =
+    colorScheme === "light"
+      ? styles.lightCancelButton
+      : styles.darkCancelButton;
+  const themeSaveButton =
     colorScheme === "light" ? styles.lightSaveButton : styles.darkSaveButton;
   const themeButtonText =
     colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
@@ -90,9 +92,9 @@ export default function DetailView() {
 
   const handleEdit = () => {
     setIsEditing(true);
-    setName(plant?.name || "")
-    setNotes(plant?.notes || "")
-    setPlantPicture(plant?.plantPicture || null)
+    setName(plant?.name || "");
+    setNotes(plant?.notes || "");
+    setPlantPicture(plant?.plantPicture || null);
   };
 
   const pickImage = async () => {
@@ -171,7 +173,7 @@ export default function DetailView() {
             {plantPicture ? (
               <Image source={{ uri: plantPicture }} style={styles.image} />
             ) : (
-              <Text style={themeImageText}>Add plant picture</Text>
+              <Text style={themeImageText}>Add plant picture (optional)</Text>
             )}
           </TouchableOpacity>
 
@@ -193,12 +195,12 @@ export default function DetailView() {
             multiline={true}
             scrollEnabled={true}
           />
-            <TouchableOpacity onPress={handleCancel} style={themeCancelButton}>
-              <Text style={themeButtonText}>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleSave} style={themeSaveButton}>
-              <Text style={themeButtonText}>Save</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={handleCancel} style={themeCancelButton}>
+            <Text style={themeButtonText}>Cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleSave} style={themeSaveButton}>
+            <Text style={themeButtonText}>Save</Text>
+          </TouchableOpacity>
         </ScrollView>
       ) : (
         <>
