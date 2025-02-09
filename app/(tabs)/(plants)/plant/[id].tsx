@@ -219,7 +219,7 @@ export default function DetailView() {
 
             <Text style={themeNameText}>{plant?.name || ""}</Text>
 
-            {notes ? (
+            {plant?.notes ? (
               <>
                 <Text style={themeNotesText}>{plant?.notes || ""}</Text>
               </>
