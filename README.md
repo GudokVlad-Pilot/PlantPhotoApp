@@ -37,7 +37,7 @@ When everything is done, you can run the app.
     npx expo start
    ```
 
-3. In the output, you'll find a QR code. Using the Expo Go, you can scan it and the app will be launched on your mobile device. In addition you can use web version of the app but the task is focused on mobile device users as the assignment required the usage of mobile device camera.
+3. Scan a QR code that will be displayed in the output with Expo Go to launch the app on your mobile device. While a web version is available from the output also, this task focuses on mobile devices since the assignment requires using the device's camera.
 
 ## Get a fresh project
 
