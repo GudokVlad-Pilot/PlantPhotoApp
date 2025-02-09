@@ -112,7 +112,8 @@ const cardWidth = (windowWidth - 60) / 2;
 const styles = StyleSheet.create({
   listContainer: {
     justifyContent: "space-between",
-    paddingBottom: 80,
+    paddingBottom: 100,
+    paddingHorizontal: 20
   },
   lightCard: {
     backgroundColor: "lightgray", // Basic color looks better
@@ -121,7 +122,8 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "flex-start",
     padding: 10,
-    margin: 5,
+    marginHorizontal: 5,
+    marginTop: 10,
     borderRadius: 10,
   },
   darkCard: {
@@ -131,7 +133,8 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "flex-start",
     padding: 10,
-    margin: 5,
+    marginHorizontal: 5,
+    marginTop: 10,
     borderRadius: 10,
   },
   lightCardText: { fontSize: 18, color: "#2A2B2E", marginVertical: 10 },
@@ -176,12 +179,10 @@ const styles = StyleSheet.create({
   lightContainer: {
     backgroundColor: "#F1EDEE",
     flex: 1,
-    padding: 20,
   },
   darkContainer: {
     backgroundColor: "#2E2A2B",
     flex: 1,
-    padding: 20,
   },
   lightThemeText: {
     color: "#2A2B2E",

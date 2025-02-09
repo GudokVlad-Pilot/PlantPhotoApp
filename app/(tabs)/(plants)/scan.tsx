@@ -11,6 +11,7 @@ import {
   Alert,
   useColorScheme,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "./plantContext/PlantContext";
@@ -120,55 +121,61 @@ export default function ScanView() {
 
   return (
     <View style={themeContainerStyle}>
-      <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
-        {plantPicture ? (
-          <Image source={{ uri: plantPicture }} style={styles.image} />
-        ) : (
-          <Text style={themeImageText}>Add plant picture (optional)</Text>
-        )}
-      </TouchableOpacity>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
+          {plantPicture ? (
+            <Image source={{ uri: plantPicture }} style={styles.image} />
+          ) : (
+            <Text style={themeImageText}>Add plant picture (optional)</Text>
+          )}
+        </TouchableOpacity>
 
-      <TextInput
-        placeholder="Plant name"
-        placeholderTextColor={themePlaceholderColor}
-        value={name}
-        onChangeText={setName}
-        style={themeInput}
-        multiline={false}
-      />
+        <TextInput
+          placeholder="Plant name"
+          placeholderTextColor={themePlaceholderColor}
+          value={name}
+          onChangeText={setName}
+          style={themeInput}
+          multiline={false}
+        />
 
-      <TextInput
-        placeholder="Notes (optional)"
-        placeholderTextColor={themePlaceholderColor}
-        value={notes}
-        onChangeText={setNotes}
-        style={themeNotesInput}
-        multiline={true}
-        scrollEnabled={true}
-      />
+        <TextInput
+          placeholder="Notes (optional)"
+          placeholderTextColor={themePlaceholderColor}
+          value={notes}
+          onChangeText={setNotes}
+          style={themeNotesInput}
+          multiline={true}
+          scrollEnabled={true}
+        />
 
-      <TouchableOpacity onPress={handleSave} style={themeButton}>
-        <Text style={themeButtonText}>Save</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={handleSave} style={themeButton}>
+          <Text style={themeButtonText}>Save</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
 
 const windowWidth = Dimensions.get("window").width;
 const imageWidth = windowWidth / 2;
+const inputWidth = windowWidth - 40;
 
 const styles = StyleSheet.create({
   lightContainer: {
     backgroundColor: "#F1EDEE",
     flex: 1,
-    padding: 20,
     alignItems: "center",
   },
   darkContainer: {
     backgroundColor: "#2E2A2B",
     flex: 1,
-    padding: 20,
     alignItems: "center",
+  },
+  scrollContainer: {
+    alignItems: "center",
+    paddingBottom: 80,
+    paddingHorizontal: 20,
   },
   lightImagePicker: {
     width: imageWidth,
@@ -177,7 +184,7 @@ const styles = StyleSheet.create({
     borderColor: "#2A2B2E",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginVertical: 20,
     borderRadius: 10,
   },
   darkImagePicker: {
@@ -187,14 +194,14 @@ const styles = StyleSheet.create({
     borderColor: "#E9DEDD",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginVertical: 20,
     borderRadius: 10,
   },
   lightImageText: { textAlign: "center", color: "#8E8C8E", fontSize: 18 },
   darkImageText: { textAlign: "center", color: "#8C8484", fontSize: 18 },
   image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
   lightInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#2A2B2E",
@@ -203,7 +210,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   darkInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#E9DEDD",
@@ -212,7 +219,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   lightNotesInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#2A2B2E",
@@ -223,7 +230,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   darkNotesInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#E9DEDD",

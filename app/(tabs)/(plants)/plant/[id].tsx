@@ -24,6 +24,12 @@ export default function DetailView() {
     colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
   const themeButton =
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
+  const themeCancelButton =
+    colorScheme === "light"
+      ? styles.lightCancelButton
+      : styles.darkCancelButton;
+  const themeSaveButton =
+    colorScheme === "light" ? styles.lightSaveButton : styles.darkSaveButton;
   const themeButtonText =
     colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
   const themeDateText =
@@ -80,8 +86,15 @@ export default function DetailView() {
     }
   };
 
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
+
   const handleEdit = () => {
     setIsEditing(true);
+    setName(plant?.name || "");
+    setNotes(plant?.notes || "");
+    setPlantPicture(plant?.plantPicture || null);
   };
 
   const pickImage = async () => {
@@ -155,12 +168,12 @@ export default function DetailView() {
   return (
     <View style={themeContainerStyle}>
       {isEditing ? (
-        <>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
           <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
             {plantPicture ? (
               <Image source={{ uri: plantPicture }} style={styles.image} />
             ) : (
-              <Text style={themeImageText}>Add plant picture</Text>
+              <Text style={themeImageText}>Add plant picture (optional)</Text>
             )}
           </TouchableOpacity>
 
@@ -182,19 +195,21 @@ export default function DetailView() {
             multiline={true}
             scrollEnabled={true}
           />
-
-          <TouchableOpacity onPress={handleSave} style={themeButton}>
-            <Text style={themeButtonText}>Save Changes</Text>
+          <TouchableOpacity onPress={handleCancel} style={themeCancelButton}>
+            <Text style={themeButtonText}>Cancel</Text>
           </TouchableOpacity>
-        </>
+          <TouchableOpacity onPress={handleSave} style={themeSaveButton}>
+            <Text style={themeButtonText}>Save</Text>
+          </TouchableOpacity>
+        </ScrollView>
       ) : (
         <>
           <ScrollView contentContainerStyle={styles.scrollContainer}>
             <Text style={themeDateText}>Added: {formatDate(addedAt)}</Text>
 
-            {plantPicture ? (
+            {plant?.plantPicture ? (
               <Image
-                source={{ uri: plantPicture }}
+                source={{ uri: plant?.plantPicture }}
                 style={styles.imageDetail}
               />
             ) : (
@@ -204,11 +219,11 @@ export default function DetailView() {
               />
             )}
 
-            <Text style={themeNameText}>{name}</Text>
+            <Text style={themeNameText}>{plant?.name || ""}</Text>
 
-            {notes ? (
+            {plant?.notes ? (
               <>
-                <Text style={themeNotesText}>{notes}</Text>
+                <Text style={themeNotesText}>{plant?.notes || ""}</Text>
               </>
             ) : (
               <></>
@@ -225,27 +240,26 @@ export default function DetailView() {
 
 const windowWidth = Dimensions.get("window").width;
 const imageWidth = windowWidth / 2;
+const inputWidth = windowWidth - 40;
 
 const styles = StyleSheet.create({
   lightContainer: {
     backgroundColor: "#F1EDEE",
     flex: 1,
-    padding: 20,
     alignItems: "center",
   },
   darkContainer: {
     backgroundColor: "#2E2A2B",
     flex: 1,
-    padding: 20,
     alignItems: "center",
   },
   scrollContainer: {
     alignItems: "center",
-    paddingBottom: 80,
+    paddingBottom: 100,
+    paddingHorizontal: 20,
   },
-
   lightInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#2A2B2E",
@@ -254,7 +268,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   darkInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#E9DEDD",
@@ -263,7 +277,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   lightNotesInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#2A2B2E",
@@ -274,7 +288,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   darkNotesInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#E9DEDD",
@@ -291,7 +305,7 @@ const styles = StyleSheet.create({
     borderColor: "#2A2B2E",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginVertical: 20,
     borderRadius: 10,
   },
   darkImagePicker: {
@@ -301,7 +315,7 @@ const styles = StyleSheet.create({
     borderColor: "#E9DEDD",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginVertical: 20,
     borderRadius: 10,
   },
   image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
@@ -340,13 +354,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#2A2B2E",
     alignSelf: "flex-start",
-    marginBottom: 10,
+    marginVertical: 10,
   },
   darkDateText: {
     fontSize: 16,
     color: "#E9DEDD",
     alignSelf: "flex-start",
-    marginBottom: 10,
+    marginVertical: 10,
   },
   lightButton: {
     position: "absolute",
@@ -360,6 +374,46 @@ const styles = StyleSheet.create({
   darkButton: {
     position: "absolute",
     bottom: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#B28500",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  lightCancelButton: {
+    position: "absolute",
+    bottom: 30,
+    start: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#F2BB05",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  darkCancelButton: {
+    position: "absolute",
+    bottom: 30,
+    start: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#B28500",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  lightSaveButton: {
+    position: "absolute",
+    bottom: 30,
+    end: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#F2BB05",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  darkSaveButton: {
+    position: "absolute",
+    bottom: 30,
+    end: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "#B28500",
