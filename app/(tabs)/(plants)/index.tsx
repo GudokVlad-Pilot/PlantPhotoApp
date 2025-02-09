@@ -15,8 +15,9 @@ import { usePlants } from "./plantContext/PlantContext";
 import { useNavigation } from "@react-navigation/native";
 
 export default function ListView() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme(); // Detecting the device theme of a user
 
+  // Style defenitions of the components for light/dark theme
   const themeContainerStyle =
     colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
   const themeCardStyle =
@@ -30,8 +31,11 @@ export default function ListView() {
   const themeButtonText =
     colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
 
+  // Context and navigation for the List View
   const { plants } = usePlants();
   const navigation = useNavigation();
+
+  // Formating the date to align US format
   const formatDate = (date: string | Date) => {
     const newDate = new Date(date);
     return newDate.toLocaleDateString("en-US", {
@@ -42,16 +46,20 @@ export default function ListView() {
   };
 
   useEffect(() => {
+    // Preventing the navigation loop between the List, Scan and Detail View
     const backAction = () => {
       if (navigation.canGoBack()) {
+        // If user can navigate back, they can use "back" button to return to the previous view
         return false;
       }
 
+      // If user on the List View, the app will be closed
       BackHandler.exitApp();
 
       return true;
     };
 
+    // "Back" button listener
     BackHandler.addEventListener("hardwareBackPress", backAction);
 
     return () => {
@@ -61,12 +69,14 @@ export default function ListView() {
 
   return (
     <View style={themeContainerStyle}>
+      {/* The list with plant cards (grouped into two columns) */}
       <FlatList
         contentContainerStyle={styles.listContainer}
         numColumns={2}
         data={plants}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
+          // Card as a link that allows user to navigate to Details View
           <Link
             href={{
               pathname: "/plant/[id]",
@@ -75,6 +85,7 @@ export default function ListView() {
             asChild
           >
             <TouchableOpacity style={themeCardStyle}>
+              {/* If user added picture of the plant, it will be shown on the card. Otherwise, the placeholder displayed. */}
               {item.plantPicture ? (
                 <Image
                   source={{ uri: item.plantPicture }}
@@ -86,7 +97,11 @@ export default function ListView() {
                   style={styles.plantImage}
                 />
               )}
+
+              {/* Plant name */}
               <Text style={themeCardText}>{item.name}</Text>
+
+              {/* Date in US format */}
               {item.addedAt && (
                 <Text style={themeDateText}>
                   Added: {formatDate(item.addedAt)}
@@ -97,6 +112,7 @@ export default function ListView() {
         )}
       />
 
+      {/* Button that allows user to navigate to Scan View to add new plant */}
       <Link href="/scan" asChild>
         <TouchableOpacity style={themeButton}>
           <Text style={themeButtonText}>Add Plant</Text>
@@ -106,14 +122,16 @@ export default function ListView() {
   );
 }
 
+// Window/screen dimensions calculations
 const windowWidth = Dimensions.get("window").width;
 const cardWidth = (windowWidth - 60) / 2;
 
+// Styles for the components
 const styles = StyleSheet.create({
   listContainer: {
     justifyContent: "space-between",
     paddingBottom: 100,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   lightCard: {
     backgroundColor: "lightgray", // Basic color looks better
