@@ -1,50 +1,115 @@
-# Plant App Documentation 👋
+# Plant Photo App Documentation
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a technical documentation for the Plant Photo App.
+The app was created as a homework assignment for NOCFO.
+Implemented with React Native.
 
-## Get started
+## Setting the environment
 
-1. Install dependencies
+1. Clone the repository.
+
+   ```bash
+   https://github.com/GudokVlad-Pilot/PlantPhotoApp.git
+   ```
+
+2. Check that you have the latest Node.js version.
+
+   ```bash
+   node -v
+   ```
+
+3. If you do not have Node.js installed, you can download it from here: [Node.js website](https://nodejs.org/en).
+
+4. [Expo Go](https://expo.dev/go) is recommended to be installed on your mobile device to see the app.
+
+When everything is done, you can run the app.
+
+## Instructions to run the app
+
+1. Install dependencies.
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Start the app.
 
    ```bash
     npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Scan a QR code that will be displayed in the output with Expo Go, this launch the app on your mobile device. Web version is also available via link in the output, but the app is made primarily for mobile devices as it was the platform required by the assignment.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## The architecture of the app
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Language (required by the assignment)
 
-## Get a fresh project
+- Typescript (React Native).
 
-When you're ready, run:
+### Data Storage and Management
 
-```bash
-npm run reset-project
-```
+- React Context is used.
+- The data is located in temporary storage (reset when the app restarts).
+- "Plant properties" is used for added data.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### App navigation structure
 
-## Learn more
+- List: View for browsing and adding plants.
+  - Plant Collection: The initial view with the list of plants.
+  - Add New Plant: The view for adding plants.
+  - Plant Details: The view for plant details and editing (consists of two modes).
+    - Detail mode: The mode for displaying plant details.
+    - Edit mode: The mode for editing plant details.
+- Settings (empty): A simple navigable view with placeholder content.
+- Profile (empty): A simple navigable view with placeholder content.
 
-To learn more about developing your project with Expo, look at the following resources:
+### Design
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+The app consist of Bottom navigation bar, Views and Top navigation header in the List View.
 
-## Join the community
+The icons for web and mobile versions were desined and added to the app (icon background color: #A3AB82). The same picture was used for the image placeholders.
 
-Join our community of developers creating universal apps.
+The design is implemented with light and dark themes (automatically detecting the device theme of a user).
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Light theme colors: 
+
+- #949D6A
+- #F2BB05
+- #F1EDEE
+- #2A2B2E
+
+
+Dark theme colors:
+
+- #5A6340
+- #B28500
+- #2E2A2B
+- #D7CDCC
+
+## Technical decisions
+
+- Comments were added to each file to simplify the understanding of code.
+- Style Sheets were used in files instead of creating a theme file because: 
+  - Small size of the app.
+  - Even if components are looking similar there are few differences.
+- The app can be launched on the web in case of users are using not only the mobile devices.
+- Two modes were used in Detail View as it was required to add the possibility to show the details and edit in the same View.
+  - Edit mode looks similar to Scan View because it is user-friendly to have familiar design (user gets familiar with entering the data from Scan View and it is easier for them to use the same format in Edit mode).
+  - Adding separate buttons for editing in Detail View instead of switching the modes would overload the interface with lots of features. 
+
+## Screenshots
+
+### The List View
+![screenshot](/assets/screenshots/list_view.jpg)
+
+### The Scan View
+![screenshot](/assets/screenshots/scan_view.jpg)
+
+### The bottom navigation bar
+![screenshot](/assets/screenshots/bottom_navigation_bar.jpg)
+
+The rest of screenshots can be found in /assets/screenshots.
+
+## Conclusion
+
+If you have any questions, you can contact me via email: **vladislavpogudin.dev@gmail.com**
