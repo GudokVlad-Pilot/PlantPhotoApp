@@ -155,7 +155,7 @@ export default function DetailView() {
   return (
     <View style={themeContainerStyle}>
       {isEditing ? (
-        <>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
           <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
             {plantPicture ? (
               <Image source={{ uri: plantPicture }} style={styles.image} />
@@ -186,7 +186,7 @@ export default function DetailView() {
           <TouchableOpacity onPress={handleSave} style={themeButton}>
             <Text style={themeButtonText}>Save Changes</Text>
           </TouchableOpacity>
-        </>
+        </ScrollView>
       ) : (
         <>
           <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -225,27 +225,27 @@ export default function DetailView() {
 
 const windowWidth = Dimensions.get("window").width;
 const imageWidth = windowWidth / 2;
+const inputWidth = windowWidth - 40;
 
 const styles = StyleSheet.create({
   lightContainer: {
     backgroundColor: "#F1EDEE",
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
     alignItems: "center",
   },
   darkContainer: {
     backgroundColor: "#2E2A2B",
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
     alignItems: "center",
   },
   scrollContainer: {
     alignItems: "center",
-    paddingBottom: 80,
+    paddingBottom: 100,
   },
-
   lightInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#2A2B2E",
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   darkInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#E9DEDD",
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   lightNotesInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#2A2B2E",
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   darkNotesInput: {
-    width: "100%",
+    width: inputWidth,
     padding: 10,
     borderWidth: 1,
     borderColor: "#E9DEDD",
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     borderColor: "#2A2B2E",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginVertical: 20,
     borderRadius: 10,
   },
   darkImagePicker: {
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
     borderColor: "#E9DEDD",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginVertical: 20,
     borderRadius: 10,
   },
   image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
@@ -340,13 +340,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#2A2B2E",
     alignSelf: "flex-start",
-    marginBottom: 10,
+    marginVertical: 10,
   },
   darkDateText: {
     fontSize: 16,
     color: "#E9DEDD",
     alignSelf: "flex-start",
-    marginBottom: 10,
+    marginVertical: 10,
   },
   lightButton: {
     position: "absolute",
