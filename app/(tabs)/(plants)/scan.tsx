@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   Image,
   Platform,
   TouchableOpacity,
@@ -18,8 +17,9 @@ import { usePlants } from "./plantContext/PlantContext";
 import { useRouter } from "expo-router";
 
 export default function ScanView() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme(); // Detecting the device theme of a user
 
+  // Style defenitions of the components for light/dark theme
   const themeContainerStyle =
     colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
   const themeImagePicker =
@@ -36,23 +36,28 @@ export default function ScanView() {
   const themeButtonText =
     colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
 
+  // Context and navigation for the Scan View
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
   const [plantPicture, setPlantPicture] = useState<string | null>(null);
   const { addPlant } = usePlants();
   const router = useRouter();
 
+  // Plant data saving (checking if plant name was inputed)
   const handleSave = () => {
     if (name.trim() !== "") {
       addPlant(name, notes.trim() || undefined, plantPicture || undefined);
-      router.back();
+      router.back(); // Once saved, the user will be navigated back to List View
     } else {
-      alert("Plant name is required");
+      alert("Plant name is required"); // User will receive an alert if plant name is missing
     }
   };
 
+  // Image picker from device storage or camera
   const pickImage = async () => {
+    // Checking if the app is launched on the web
     if (Platform.OS === "web") {
+      // Picking the image from device storage
       const input = document.createElement("input");
       input.type = "file";
       input.accept = "image/*";
@@ -60,19 +65,22 @@ export default function ScanView() {
         const file = event.target.files[0];
         if (file) {
           const reader = new FileReader();
-          reader.onload = () => setPlantPicture(reader.result as string);
+          reader.onload = () => setPlantPicture(reader.result as string); // Transfering file to string for context
           reader.readAsDataURL(file);
         }
       };
       input.click();
     } else {
+      // If the app is launched on mobile device, it creates alert
       Alert.alert(
         "Select Plant Picture",
         "Add photo from Camera or Gallery",
         [
           {
+            // Camera option
             text: "Camera",
             onPress: async () => {
+              // Requesting permissions to use camera
               const { status } =
                 await ImagePicker.requestCameraPermissionsAsync();
               if (status !== "granted") {
@@ -80,9 +88,10 @@ export default function ScanView() {
                 return;
               }
 
+              // Lauching the camera
               const result = await ImagePicker.launchCameraAsync({
                 allowsEditing: true,
-                aspect: [1, 1],
+                aspect: [1, 1], // Image cropping is required, as the app images are displayed in square format
                 quality: 1,
               });
 
@@ -92,8 +101,10 @@ export default function ScanView() {
             },
           },
           {
+            // Gallery option
             text: "Gallery",
             onPress: async () => {
+              // Requesting permissions to use gallery
               const { status } =
                 await ImagePicker.requestMediaLibraryPermissionsAsync();
               if (status !== "granted") {
@@ -101,10 +112,11 @@ export default function ScanView() {
                 return;
               }
 
+              // Openning the gallery
               const result = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.Images,
                 allowsEditing: true,
-                aspect: [1, 1],
+                aspect: [1, 1], // Image cropping is required, as the app images are displayed in square format
                 quality: 1,
               });
 
@@ -114,15 +126,18 @@ export default function ScanView() {
             },
           },
         ],
-        { cancelable: true }
+        { cancelable: true } // Alert can be closed by clicking outside the box or "back" button
       );
     }
   };
 
   return (
     <View style={themeContainerStyle}>
+      {/* Scroll view is used in case of keyboard extention */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {/* Image picker */}
         <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
+          {/* If the picture is added, it will be shown in the box. Otherwise, a text will be displayed. */}
           {plantPicture ? (
             <Image source={{ uri: plantPicture }} style={styles.image} />
           ) : (
@@ -130,6 +145,7 @@ export default function ScanView() {
           )}
         </TouchableOpacity>
 
+        {/* Input field for plant name (one line field) */}
         <TextInput
           placeholder="Plant name"
           placeholderTextColor={themePlaceholderColor}
@@ -139,6 +155,7 @@ export default function ScanView() {
           multiline={false}
         />
 
+        {/* Input field for notes (multiline scrollable field) */}
         <TextInput
           placeholder="Notes (optional)"
           placeholderTextColor={themePlaceholderColor}
@@ -149,6 +166,7 @@ export default function ScanView() {
           scrollEnabled={true}
         />
 
+        {/* Save button */}
         <TouchableOpacity onPress={handleSave} style={themeButton}>
           <Text style={themeButtonText}>Save</Text>
         </TouchableOpacity>
@@ -157,10 +175,12 @@ export default function ScanView() {
   );
 }
 
+// Window/screen dimensions calculations
 const windowWidth = Dimensions.get("window").width;
 const imageWidth = windowWidth / 2;
 const inputWidth = windowWidth - 40;
 
+// Styles for the components
 const styles = StyleSheet.create({
   lightContainer: {
     backgroundColor: "#F1EDEE",
