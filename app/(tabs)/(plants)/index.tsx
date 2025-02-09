@@ -85,7 +85,7 @@ export default function ListView() {
             asChild
           >
             <TouchableOpacity style={themeCardStyle}>
-              {/* If user added picture of the plant, it will be shown on the card. Otherwise, the placeholder displayed. */}
+              {/* If user added picture of the plant, it will be shown on the card. Otherwise, a placeholder will be displayed. */}
               {item.plantPicture ? (
                 <Image
                   source={{ uri: item.plantPicture }}
