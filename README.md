@@ -42,7 +42,36 @@ When everything is done, you can run the app.
 
 ## The architecture of the app
 
-The app is using
+### Language
+
+- Typescript (React Native) (Required by the assignment)
+
+### Data Storage and Management
+
+- React Context is used.
+- The data is located in temporary storage (reset when the app restarts).
+- "Plant properties" is used for added data.
+
+### Design
+
+The app consist of Bottom navigation bar, Views and Top navigation header in the List View.
+
+The design is implemented with light and dark themes (automatically detecting the device theme of a user).
+
+Light theme colors: 
+
+- #949D6A
+- #F2BB05
+- #F1EDEE
+- #2A2B2E
+
+
+Dark theme colors:
+
+- #5A6340
+- #B28500
+- #2E2A2B
+- #D7CDCC
 
 ## Technical decisions
 
