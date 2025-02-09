@@ -18,7 +18,7 @@ Implemented with React Native.
    node -v
    ```
 
-3. If you do not have Node.js istalled, you can download it from here: [Node.js website](https://nodejs.org/en)
+3. If you do not have Node.js installed, you can download it from here: [Node.js website](https://nodejs.org/en)
 
 4. [Expo Go](https://expo.dev/go) is recommended to be installed on your mobile device to see the app.
 
