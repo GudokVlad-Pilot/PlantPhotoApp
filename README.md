@@ -109,3 +109,7 @@ Dark theme colors:
 ![screenshot](/assets/screenshots/bottom_navigation_bar.jpg)
 
 The rest of screenshots can be found in /assets/screenshots.
+
+> [!IMPORTANT]
+
+If you have any questions, you can contact me via email: **vladislavpogudin.dev@gmail.com**
