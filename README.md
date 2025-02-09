@@ -11,11 +11,17 @@ The app was created as a homework assignment for NOCFO.
    https://github.com/GudokVlad-Pilot/PlantPhotoApp.git
    ```
 
-2. Start the app
+2. Check that you have the latest Node.js version
 
    ```bash
-    npx expo start
+   node -v
    ```
+
+3. If you do not have Node.js istalled, you can download it from here: 
+
+- [Node.js website](https://nodejs.org/en)
+
+When everything is done, you can run the app
 
 ## Instructions to run the app
 
