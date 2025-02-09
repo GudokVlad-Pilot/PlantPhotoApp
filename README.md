@@ -62,3 +62,5 @@ The app is using
 
 ### The bottom navigation bar
 ![screenshot](/assets/screenshots/bottom_navigation_bar.jpg)
+
+The rest of screenshots can be found in /assets/screenshots
