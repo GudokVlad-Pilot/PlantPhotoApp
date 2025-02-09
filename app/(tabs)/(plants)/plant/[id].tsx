@@ -231,18 +231,17 @@ const styles = StyleSheet.create({
   lightContainer: {
     backgroundColor: "#F1EDEE",
     flex: 1,
-    paddingHorizontal: 20,
     alignItems: "center",
   },
   darkContainer: {
     backgroundColor: "#2E2A2B",
     flex: 1,
-    paddingHorizontal: 20,
     alignItems: "center",
   },
   scrollContainer: {
     alignItems: "center",
     paddingBottom: 100,
+    paddingHorizontal: 20
   },
   lightInput: {
     width: inputWidth,

@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   listContainer: {
     justifyContent: "space-between",
     paddingBottom: 100,
+    paddingHorizontal: 20
   },
   lightCard: {
     backgroundColor: "lightgray", // Basic color looks better
@@ -178,12 +179,10 @@ const styles = StyleSheet.create({
   lightContainer: {
     backgroundColor: "#F1EDEE",
     flex: 1,
-    paddingHorizontal: 20,
   },
   darkContainer: {
     backgroundColor: "#2E2A2B",
     flex: 1,
-    paddingHorizontal: 20,
   },
   lightThemeText: {
     color: "#2A2B2E",
