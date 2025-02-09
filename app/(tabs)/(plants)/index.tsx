@@ -125,6 +125,7 @@ export default function ListView() {
 // Window/screen dimensions calculations
 const windowWidth = Dimensions.get("window").width;
 const cardWidth = (windowWidth - 60) / 2;
+const imageWidth = cardWidth - 20;
 
 // Styles for the components
 const styles = StyleSheet.create({
@@ -158,8 +159,8 @@ const styles = StyleSheet.create({
   lightCardText: { fontSize: 18, color: "#2A2B2E", marginVertical: 10 },
   darkCardText: { fontSize: 18, color: "#2E2A2B", marginVertical: 10 },
   plantImage: {
-    width: cardWidth - 20,
-    height: cardWidth - 20,
+    width: imageWidth,
+    height: imageWidth,
     borderRadius: 10,
   },
   lightButton: {
