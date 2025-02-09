@@ -25,13 +25,12 @@ export default function ScanView() {
     colorScheme === "light" ? styles.lightImagePicker : styles.darkImagePicker;
   const themeImageText =
     colorScheme === "light" ? styles.lightImageText : styles.darkImageText;
-    const themeInput =
+  const themeInput =
     colorScheme === "light" ? styles.lightInput : styles.darkInput;
-    const themeNotesInput =
+  const themeNotesInput =
     colorScheme === "light" ? styles.lightNotesInput : styles.darkNotesInput;
-    const themePlaceholderColor =
-    colorScheme === "light" ? "#8E8C8E" : "#8C8484";
-    const themeButton =
+  const themePlaceholderColor = colorScheme === "light" ? "#8E8C8E" : "#8C8484";
+  const themeButton =
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
   const themeButtonText =
     colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
@@ -221,7 +220,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 15,
     height: 200,
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
   },
   darkNotesInput: {
     width: "100%",
@@ -232,14 +231,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 15,
     height: 200,
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
   },
   saveButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "blue",
     borderRadius: 5,
-    marginTop: "auto"
+    marginTop: "auto",
   },
   saveButtonText: { color: "#FFFFFF", fontSize: 16 },
   lightButton: {
@@ -258,6 +257,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: "center",
   },
-  lightButtonText: { color: "#F1EDEE", fontSize: 16 },
-  darkButtonText: { color: "#E9DEDD", fontSize: 16 },
+  lightButtonText: { color: "#2A2B2E", fontSize: 16, fontWeight: "bold" },
+  darkButtonText: { color: "#E9DEDD", fontSize: 16, fontWeight: "bold" },
 });
