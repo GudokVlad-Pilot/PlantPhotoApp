@@ -76,7 +76,7 @@ export default function ListView() {
         data={plants}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          // Card as a link that allows user to navigate to Details View
+          // Card as a link that allows user to navigate to Detail View
           <Link
             href={{
               pathname: "/plant/[id]",
@@ -101,7 +101,7 @@ export default function ListView() {
               {/* Plant name */}
               <Text style={themeCardText}>{item.name}</Text>
 
-              {/* Date in US format */}
+              {/* Date when the plant was added in US format */}
               {item.addedAt && (
                 <Text style={themeDateText}>
                   Added: {formatDate(item.addedAt)}
