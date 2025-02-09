@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   lightButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   darkButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,

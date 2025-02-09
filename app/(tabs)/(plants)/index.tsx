@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   lightButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   darkButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -161,8 +161,18 @@ const styles = StyleSheet.create({
   },
   lightButtonText: { color: "2A2B2E", fontSize: 16, fontWeight: "bold" },
   darkButtonText: { color: "#E9DEDD", fontSize: 16, fontWeight: "bold" },
-  lightDateText: { fontSize: 12, color: "#2A2B2E", alignSelf: "flex-end", marginTop: "auto"  },
-  darkDateText: { fontSize: 12, color: "#2E2A2B", alignSelf: "flex-end", marginTop: "auto"  },
+  lightDateText: {
+    fontSize: 12,
+    color: "#2A2B2E",
+    alignSelf: "flex-end",
+    marginTop: "auto",
+  },
+  darkDateText: {
+    fontSize: 12,
+    color: "#2E2A2B",
+    alignSelf: "flex-end",
+    marginTop: "auto",
+  },
   lightContainer: {
     backgroundColor: "#F1EDEE",
     flex: 1,
