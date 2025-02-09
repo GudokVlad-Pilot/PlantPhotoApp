@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, useColorScheme } from "react-native";
 
 export default function ProfileView() {
-  const colorScheme = useColorScheme(); // Detecting the color scheme of the user
+  const colorScheme = useColorScheme(); // Detecting the device theme of a user
 
   // Style defenitions of the components for light/dark theme
   const themeTextStyle =

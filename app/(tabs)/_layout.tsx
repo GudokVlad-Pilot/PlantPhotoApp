@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useColorScheme } from "react-native";
 
 export default function TabsLayout() {
-  const colorScheme = useColorScheme(); // Detecting the color scheme of the user
+  const colorScheme = useColorScheme(); // Detecting the device theme of a user
 
   // Style defenitions of the components for light/dark theme
   const themeBackgroundStyle = colorScheme === "light" ? "#949D6A" : "#5A6340";
@@ -38,7 +38,7 @@ export default function TabsLayout() {
         headerShown: false,
       })}
     >
-      {/* Screens/views where a user can navigate with bottom bar */}
+      {/* Screens/views where the user can navigate with bottom bar */}
 
       {/* List View/Detail View/Scan View */}
       <Tabs.Screen name="(plants)" options={{ title: "List" }} />
