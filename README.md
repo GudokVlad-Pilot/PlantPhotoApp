@@ -90,7 +90,7 @@ Dark theme colors:
 
 - Comments were added to each file to simplify the understanding of code.
 - Style Sheets were used in files instead of creating a theme file because: 
-  - The app small size.
+  - Small size of the app.
   - Even if component are looking similar there are few differences.
 - The app can be launched on the web in case of users are using not only the mobile devices.
 - Two modes were used in Detail View as it was required to add the possibility to show the details and edit in the same View.
