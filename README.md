@@ -52,4 +52,13 @@ The app is using
 - Settings (empty): A simple navigable view with placeholder content.
 - Profile (empty): A simple navigable view with placeholder content.
 
-![screenshot](/assets/screenshots/List%20View.jpg)
+## Screenshots
+
+### The List View
+![screenshot](/assets/screenshots/list_view.jpg)
+
+### The Scan View
+![screenshot](/assets/screenshots/scan_view.jpg)
+
+### The bottom navigation bar
+![screenshot](/assets/screenshots/bottom_navigation_bar.jpg)
