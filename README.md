@@ -6,19 +6,19 @@ Implemented with React Native.
 
 ## Setting the environment
 
-1. Clone the repository
+1. Clone the repository.
 
    ```bash
    https://github.com/GudokVlad-Pilot/PlantPhotoApp.git
    ```
 
-2. Check that you have the latest Node.js version
+2. Check that you have the latest Node.js version.
 
    ```bash
    node -v
    ```
 
-3. If you do not have Node.js installed, you can download it from here: [Node.js website](https://nodejs.org/en)
+3. If you do not have Node.js installed, you can download it from here: [Node.js website](https://nodejs.org/en).
 
 4. [Expo Go](https://expo.dev/go) is recommended to be installed on your mobile device to see the app.
 
@@ -26,13 +26,13 @@ When everything is done, you can run the app.
 
 ## Instructions to run the app
 
-1. Install dependencies
+1. Install dependencies.
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Start the app.
 
    ```bash
     npx expo start
@@ -44,7 +44,7 @@ When everything is done, you can run the app.
 
 ### Language (required by the assignment)
 
-- Typescript (React Native)
+- Typescript (React Native).
 
 ### Data Storage and Management
 
