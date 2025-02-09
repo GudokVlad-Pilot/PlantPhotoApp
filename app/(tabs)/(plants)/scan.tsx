@@ -9,12 +9,32 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  useColorScheme,
+  Dimensions,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "./plantContext/PlantContext";
 import { useRouter } from "expo-router";
 
 export default function ScanView() {
+  const colorScheme = useColorScheme();
+
+  const themeContainerStyle =
+    colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
+  const themeImagePicker =
+    colorScheme === "light" ? styles.lightImagePicker : styles.darkImagePicker;
+  const themeImageText =
+    colorScheme === "light" ? styles.lightImageText : styles.darkImageText;
+  const themeInput =
+    colorScheme === "light" ? styles.lightInput : styles.darkInput;
+  const themeNotesInput =
+    colorScheme === "light" ? styles.lightNotesInput : styles.darkNotesInput;
+  const themePlaceholderColor = colorScheme === "light" ? "#8E8C8E" : "#8C8484";
+  const themeButton =
+    colorScheme === "light" ? styles.lightButton : styles.darkButton;
+  const themeButtonText =
+    colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
+
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
   const [plantPicture, setPlantPicture] = useState<string | null>(null);
@@ -92,11 +112,6 @@ export default function ScanView() {
               }
             },
           },
-          {
-            text: "Close",
-            style: "cancel",
-            onPress: () => console.log("Image selection canceled."),
-          },
         ],
         { cancelable: true }
       );
@@ -104,70 +119,138 @@ export default function ScanView() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Add new plant</Text>
-
-      <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
+    <View style={themeContainerStyle}>
+      <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
         {plantPicture ? (
           <Image source={{ uri: plantPicture }} style={styles.image} />
         ) : (
-          <Text style={styles.imageText}>Add plant picture</Text>
+          <Text style={themeImageText}>Add plant picture (optional)</Text>
         )}
       </TouchableOpacity>
 
       <TextInput
         placeholder="Plant name"
+        placeholderTextColor={themePlaceholderColor}
         value={name}
         onChangeText={setName}
-        style={styles.input}
+        style={themeInput}
+        multiline={false}
       />
 
       <TextInput
         placeholder="Notes (optional)"
+        placeholderTextColor={themePlaceholderColor}
         value={notes}
         onChangeText={setNotes}
-        style={styles.input}
+        style={themeNotesInput}
+        multiline={true}
+        scrollEnabled={true}
       />
 
-      <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
-        <Text style={styles.saveButtonText}>Save</Text>
+      <TouchableOpacity onPress={handleSave} style={themeButton}>
+        <Text style={themeButtonText}>Save</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
+const windowWidth = Dimensions.get("window").width;
+const imageWidth = windowWidth / 2;
+
 const styles = StyleSheet.create({
-  container: {
+  lightContainer: {
+    backgroundColor: "#F1EDEE",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     padding: 20,
+    alignItems: "center",
   },
-  title: { fontSize: 24, marginBottom: 20 },
-  input: {
-    width: "100%",
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "gray",
-    borderRadius: 5,
-    marginBottom: 15,
+  darkContainer: {
+    backgroundColor: "#2E2A2B",
+    flex: 1,
+    padding: 20,
+    alignItems: "center",
   },
-  imagePicker: {
-    width: 150,
-    height: 150,
+  lightImagePicker: {
+    width: imageWidth,
+    height: imageWidth,
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: "#2A2B2E",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
+    borderRadius: 10,
   },
-  image: { width: 150, height: 150 },
-  imageText: { textAlign: "center", color: "#000000" },
-  saveButton: {
+  darkImagePicker: {
+    width: imageWidth,
+    height: imageWidth,
+    borderWidth: 1,
+    borderColor: "#E9DEDD",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    borderRadius: 10,
+  },
+  lightImageText: { textAlign: "center", color: "#8E8C8E", fontSize: 18 },
+  darkImageText: { textAlign: "center", color: "#8C8484", fontSize: 18 },
+  image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
+  lightInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#2A2B2E",
+    color: "#2A2B2E",
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  darkInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#E9DEDD",
+    color: "#E9DEDD",
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  lightNotesInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#2A2B2E",
+    color: "#2A2B2E",
+    borderRadius: 5,
+    marginBottom: 15,
+    height: 200,
+    textAlignVertical: "top",
+  },
+  darkNotesInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#E9DEDD",
+    color: "#E9DEDD",
+    borderRadius: 5,
+    marginBottom: 15,
+    height: 200,
+    textAlignVertical: "top",
+  },
+  lightButton: {
+    position: "absolute",
+    bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: "blue",
-    borderRadius: 5,
+    backgroundColor: "#F2BB05",
+    borderRadius: 10,
+    alignSelf: "center",
   },
-  saveButtonText: { color: "#FFFFFF", fontSize: 16 },
+  darkButton: {
+    position: "absolute",
+    bottom: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#B28500",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  lightButtonText: { color: "#2A2B2E", fontSize: 16, fontWeight: "bold" },
+  darkButtonText: { color: "#E9DEDD", fontSize: 16, fontWeight: "bold" },
 });

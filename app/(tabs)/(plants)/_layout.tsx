@@ -1,27 +1,43 @@
 import React from "react";
 import { Stack } from "expo-router";
 import { PlantProvider } from "./plantContext/PlantContext";
+import { useColorScheme } from "react-native";
 
 export default function PlantsLayout() {
+    const colorScheme = useColorScheme();
+    
+      const themeBackgroundStyle = colorScheme === "light" ? "#949D6A" : "#5A6340";
+      const themeTextStyle = colorScheme === "light" ? "#F1EDEE" : "#D7CDCC";
+      
   return (
     <PlantProvider>
-      <Stack>
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: themeBackgroundStyle,
+          },
+          headerTintColor: themeTextStyle,
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
         <Stack.Screen
           name="index"
           options={{
-            title: "List",
+            title: "Plant Collection",
           }}
         />
         <Stack.Screen
           name="scan"
           options={{
-            title: "Scan",
+            title: "Add New Plant",
           }}
         />
         <Stack.Screen
           name="plant/[id]"
           options={{
-            title: "Detail",
+            title: "Plant Details",
           }}
         />
       </Stack>
