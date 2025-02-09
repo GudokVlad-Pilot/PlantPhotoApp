@@ -55,9 +55,11 @@ When everything is done, you can run the app.
 ### App navigation structure
 
 - List: View for browsing and adding plants.
-- - Plant Collection: The initial view with the list of plants.
-- - Add New Plant: The view for adding plants.
-- - Plant Details: The view for plant details and editing (consists of two modes).
+  - Plant Collection: The initial view with the list of plants.
+  - Add New Plant: The view for adding plants.
+  - Plant Details: The view for plant details and editing (consists of two modes).
+    - Detail mode: The mode for displaying plant details.
+    - Edit mode: The mode for editing plant details.
 - Settings (empty): A simple navigable view with placeholder content.
 - Profile (empty): A simple navigable view with placeholder content.
 
@@ -85,6 +87,15 @@ Dark theme colors:
 - #D7CDCC
 
 ## Technical decisions
+
+- Comments were added to each file to simplify the understanding of code.
+- Style Sheets were used in files instead of creating a theme file because: 
+  - The app small size.
+  - Even if component are looking similar there are few differences.
+- The app can be launched on the web in case of users are using not only the mobile devices.
+- Two modes were used in Detail View as it was required to add the possibility to show the details and edit in the same View.
+  - Edit mode looks similar to Scan View because it is user-friendly to have familiar design (user gets familiar with entering the data from Scan View and it is easier for them to use the same format in Edit mode).
+  - Adding separate buttons for editing in Detail View instead of switching the modes would overload the interface with lots of features. 
 
 ## Screenshots
 
