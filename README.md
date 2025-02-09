@@ -1,8 +1,23 @@
 # Plant App Documentation
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a technical documentation for the Plant Photo App.
+The app was created as a homework assignment for NOCFO.
 
-## Get started
+## Setting the environment
+
+1. Clone the repository
+
+   ```bash
+   https://github.com/GudokVlad-Pilot/PlantPhotoApp.git
+   ```
+
+2. Start the app
+
+   ```bash
+    npx expo start
+   ```
+
+## Instructions to run the app
 
 1. Install dependencies
 
