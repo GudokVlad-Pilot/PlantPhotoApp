@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     alignItems: "center",
     paddingBottom: 80,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   lightImagePicker: {
     width: imageWidth,

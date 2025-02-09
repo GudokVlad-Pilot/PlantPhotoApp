@@ -24,6 +24,10 @@ export default function DetailView() {
     colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
   const themeButton =
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
+    const themeCancelButton =
+    colorScheme === "light" ? styles.lightCancelButton : styles.darkCancelButton;
+    const themeSaveButton =
+    colorScheme === "light" ? styles.lightSaveButton : styles.darkSaveButton;
   const themeButtonText =
     colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
   const themeDateText =
@@ -80,8 +84,15 @@ export default function DetailView() {
     }
   };
 
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
+
   const handleEdit = () => {
     setIsEditing(true);
+    setName(plant?.name || "")
+    setNotes(plant?.notes || "")
+    setPlantPicture(plant?.plantPicture || null)
   };
 
   const pickImage = async () => {
@@ -182,19 +193,21 @@ export default function DetailView() {
             multiline={true}
             scrollEnabled={true}
           />
-
-          <TouchableOpacity onPress={handleSave} style={themeButton}>
-            <Text style={themeButtonText}>Save Changes</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={handleCancel} style={themeCancelButton}>
+              <Text style={themeButtonText}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleSave} style={themeSaveButton}>
+              <Text style={themeButtonText}>Save</Text>
+            </TouchableOpacity>
         </ScrollView>
       ) : (
         <>
           <ScrollView contentContainerStyle={styles.scrollContainer}>
             <Text style={themeDateText}>Added: {formatDate(addedAt)}</Text>
 
-            {plantPicture ? (
+            {plant?.plantPicture ? (
               <Image
-                source={{ uri: plantPicture }}
+                source={{ uri: plant?.plantPicture }}
                 style={styles.imageDetail}
               />
             ) : (
@@ -204,11 +217,11 @@ export default function DetailView() {
               />
             )}
 
-            <Text style={themeNameText}>{name}</Text>
+            <Text style={themeNameText}>{plant?.name || ""}</Text>
 
             {notes ? (
               <>
-                <Text style={themeNotesText}>{notes}</Text>
+                <Text style={themeNotesText}>{plant?.notes || ""}</Text>
               </>
             ) : (
               <></>
@@ -241,7 +254,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     alignItems: "center",
     paddingBottom: 100,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   lightInput: {
     width: inputWidth,
@@ -359,6 +372,46 @@ const styles = StyleSheet.create({
   darkButton: {
     position: "absolute",
     bottom: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#B28500",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  lightCancelButton: {
+    position: "absolute",
+    bottom: 30,
+    start: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#F2BB05",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  darkCancelButton: {
+    position: "absolute",
+    bottom: 30,
+    start: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#B28500",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  lightSaveButton: {
+    position: "absolute",
+    bottom: 30,
+    end: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#F2BB05",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  darkSaveButton: {
+    position: "absolute",
+    bottom: 30,
+    end: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "#B28500",
