@@ -113,9 +113,6 @@ export default function ScanView() {
               }
             },
           },
-          {
-            text: "Close",
-          },
         ],
         { cancelable: true }
       );
