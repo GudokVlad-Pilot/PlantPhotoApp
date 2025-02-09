@@ -50,13 +50,13 @@ export default function ScanView() {
       addPlant(name, notes.trim() || undefined, plantPicture || undefined);
       router.back(); // Once saved, the user will be navigated back to List View
     } else {
-      alert("Plant name is required"); // User will receive alert if plant name is missing
+      alert("Plant name is required"); // User will receive an alert if plant name is missing
     }
   };
 
   // Image picker from device storage or camera
   const pickImage = async () => {
-    // Checking if the app is launched on web
+    // Checking if the app is launched on the web
     if (Platform.OS === "web") {
       // Picking the image from device storage
       const input = document.createElement("input");
