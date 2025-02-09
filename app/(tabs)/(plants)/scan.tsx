@@ -27,8 +27,14 @@ export default function ScanView() {
     colorScheme === "light" ? styles.lightImageText : styles.darkImageText;
     const themeInput =
     colorScheme === "light" ? styles.lightInput : styles.darkInput;
+    const themeNotesInput =
+    colorScheme === "light" ? styles.lightNotesInput : styles.darkNotesInput;
     const themePlaceholderColor =
-    colorScheme === "light" ? "#2A2B2E" : "#E9DEDD";
+    colorScheme === "light" ? "#8E8C8E" : "#8C8484";
+    const themeButton =
+    colorScheme === "light" ? styles.lightButton : styles.darkButton;
+  const themeButtonText =
+    colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
 
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
@@ -132,7 +138,7 @@ export default function ScanView() {
         value={name}
         onChangeText={setName}
         style={themeInput}
-        multiline={true}
+        multiline={false}
       />
 
       <TextInput
@@ -140,12 +146,13 @@ export default function ScanView() {
         placeholderTextColor={themePlaceholderColor}
         value={notes}
         onChangeText={setNotes}
-        style={themeInput}
+        style={themeNotesInput}
         multiline={true}
+        scrollEnabled={true}
       />
 
-      <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
-        <Text style={styles.saveButtonText}>Save</Text>
+      <TouchableOpacity onPress={handleSave} style={themeButton}>
+        <Text style={themeButtonText}>Save</Text>
       </TouchableOpacity>
     </View>
   );
@@ -187,8 +194,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 10,
   },
-  lightImageText: { textAlign: "center", color: "#2A2B2E", fontSize: 18 },
-  darkImageText: { textAlign: "center", color: "#E9DEDD", fontSize: 18 },
+  lightImageText: { textAlign: "center", color: "#8E8C8E", fontSize: 18 },
+  darkImageText: { textAlign: "center", color: "#8C8484", fontSize: 18 },
   image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
   lightInput: {
     width: "100%",
@@ -208,11 +215,52 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 15,
   },
+  lightNotesInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#2A2B2E",
+    color: "#2A2B2E",
+    borderRadius: 5,
+    marginBottom: 15,
+    height: 200,
+    textAlignVertical: 'top',
+  },
+  darkNotesInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#E9DEDD",
+    color: "#E9DEDD",
+    borderRadius: 5,
+    marginBottom: 15,
+    height: 200,
+    textAlignVertical: 'top',
+  },
   saveButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "blue",
     borderRadius: 5,
+    marginTop: "auto"
   },
   saveButtonText: { color: "#FFFFFF", fontSize: 16 },
+  lightButton: {
+    marginTop: "auto",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#F2BB05",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  darkButton: {
+    marginTop: "auto",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#B28500",
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  lightButtonText: { color: "#F1EDEE", fontSize: 16 },
+  darkButtonText: { color: "#E9DEDD", fontSize: 16 },
 });

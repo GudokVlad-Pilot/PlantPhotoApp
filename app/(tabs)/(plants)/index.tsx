@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   lightButton: {
-    marginTop: 20,
+    marginTop: "auto",
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "#F2BB05",
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   darkButton: {
-    marginTop: 20,
+    marginTop: "auto",
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "#B28500",
