@@ -19,7 +19,9 @@ The app was created as a homework assignment for NOCFO.
 
 3. If you do not have Node.js istalled, you can download it from here: [Node.js website](https://nodejs.org/en)
 
-When everything is done, you can run the app
+4. [Expo Go](https://expo.dev/go) is recommended to be installed on your mobile device to see the app.
+
+When everything is done, you can run the app.
 
 ## Instructions to run the app
 
@@ -35,14 +37,7 @@ When everything is done, you can run the app
     npx expo start
    ```
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+3. In the output, you'll find a QR code. Using the Expo Go, you can scan it and the app will be launched on your mobile device. In addition you can use web version of the app but the task is focused on mobile device users as the assignment required the usage of mobile device camera.
 
 ## Get a fresh project
 
