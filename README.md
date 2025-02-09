@@ -2,6 +2,7 @@
 
 This is a technical documentation for the Plant Photo App.
 The app was created as a homework assignment for NOCFO.
+Implemented with React Native.
 
 ## Setting the environment
 
@@ -37,28 +38,18 @@ When everything is done, you can run the app.
     npx expo start
    ```
 
-3. Scan a QR code that will be displayed in the output with Expo Go to launch the app on your mobile device. While a web version is available from the output also, this task focuses on mobile devices since the assignment requires using the device's camera.
+3. Scan a QR code that will be displayed in the output with Expo Go, this launch the app on your mobile device. Web version is also available via link in the output, but the app is made primarily for mobile devices as it was the platform required by the assignment.
 
-## Get a fresh project
+## The architecture of the app
 
-When you're ready, run:
+The app is using
 
-```bash
-npm run reset-project
-```
+## Technical decisions
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Navigation
 
-## Learn more
+- List: View for browsing and adding plants.
+- Settings (empty): A simple navigable view with placeholder content.
+- Profile (empty): A simple navigable view with placeholder content.
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+![screenshot](/assets/images/icon.png)
