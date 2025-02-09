@@ -233,16 +233,9 @@ const styles = StyleSheet.create({
     height: 200,
     textAlignVertical: "top",
   },
-  saveButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "blue",
-    borderRadius: 5,
-    marginTop: "auto",
-  },
-  saveButtonText: { color: "#FFFFFF", fontSize: 16 },
   lightButton: {
-    marginTop: "auto",
+    position: 'absolute',
+    bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "#F2BB05",
@@ -250,7 +243,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   darkButton: {
-    marginTop: "auto",
+    position: 'absolute',
+    bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "#B28500",

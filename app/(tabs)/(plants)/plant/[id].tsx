@@ -11,6 +11,7 @@ import {
   Alert,
   useColorScheme,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "../plantContext/PlantContext";
@@ -29,8 +30,17 @@ export default function DetailView() {
     colorScheme === "light" ? styles.lightDateText : styles.darkDateText;
   const themeNameText =
     colorScheme === "light" ? styles.lightNameText : styles.darkNameText;
-    const themeNotesText =
+  const themeNotesText =
     colorScheme === "light" ? styles.lightNotesText : styles.darkNotesText;
+  const themeInput =
+    colorScheme === "light" ? styles.lightInput : styles.darkInput;
+  const themeNotesInput =
+    colorScheme === "light" ? styles.lightNotesInput : styles.darkNotesInput;
+  const themePlaceholderColor = colorScheme === "light" ? "#8E8C8E" : "#8C8484";
+  const themeImagePicker =
+    colorScheme === "light" ? styles.lightImagePicker : styles.darkImagePicker;
+  const themeImageText =
+    colorScheme === "light" ? styles.lightImageText : styles.darkImageText;
 
   const { id } = useLocalSearchParams();
   const { plants, updatePlant } = usePlants();
@@ -146,55 +156,64 @@ export default function DetailView() {
     <View style={themeContainerStyle}>
       {isEditing ? (
         <>
+          <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
+            {plantPicture ? (
+              <Image source={{ uri: plantPicture }} style={styles.image} />
+            ) : (
+              <Text style={themeImageText}>Add plant picture</Text>
+            )}
+          </TouchableOpacity>
+
           <TextInput
             placeholder="Plant Name"
+            placeholderTextColor={themePlaceholderColor}
             value={name}
             onChangeText={setName}
-            style={styles.input}
+            style={themeInput}
+            multiline={false}
           />
 
           <TextInput
             placeholder="Notes (optional)"
+            placeholderTextColor={themePlaceholderColor}
             value={notes}
             onChangeText={setNotes}
-            style={styles.input}
+            style={themeNotesInput}
+            multiline={true}
+            scrollEnabled={true}
           />
 
-          <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
-            {plantPicture ? (
-              <Image source={{ uri: plantPicture }} style={styles.image} />
-            ) : (
-              <Text style={styles.imageText}>Add plant picture</Text>
-            )}
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={handleSave} style={styles.saveButton}>
-            <Text style={styles.saveButtonText}>Save Changes</Text>
+          <TouchableOpacity onPress={handleSave} style={themeButton}>
+            <Text style={themeButtonText}>Save Changes</Text>
           </TouchableOpacity>
         </>
       ) : (
         <>
-          <Text style={themeDateText}>Added: {formatDate(addedAt)}</Text>
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <Text style={themeDateText}>Added: {formatDate(addedAt)}</Text>
 
-          {plantPicture ? (
-            <Image source={{ uri: plantPicture }} style={styles.imageDetail} />
-          ) : (
-            <Image
-              source={require("../../../../assets/images/plants.png")}
-              style={styles.imageDetail}
-            />
-          )}
+            {plantPicture ? (
+              <Image
+                source={{ uri: plantPicture }}
+                style={styles.imageDetail}
+              />
+            ) : (
+              <Image
+                source={require("../../../../assets/images/plants.png")}
+                style={styles.imageDetail}
+              />
+            )}
 
-          <Text style={themeNameText}>{name}</Text>
+            <Text style={themeNameText}>{name}</Text>
 
-          {notes ? (
-            <>
-              <Text style={themeNotesText}>{notes}</Text>
-            </>
-          ) : (
-            <></>
-          )}
-
+            {notes ? (
+              <>
+                <Text style={themeNotesText}>{notes}</Text>
+              </>
+            ) : (
+              <></>
+            )}
+          </ScrollView>
           <TouchableOpacity onPress={handleEdit} style={themeButton}>
             <Text style={themeButtonText}>Edit</Text>
           </TouchableOpacity>
@@ -220,55 +239,95 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: "center",
   },
-  input: {
+  scrollContainer: {
+    alignItems: "center",
+    paddingBottom: 80,
+  },
+
+  lightInput: {
     width: "100%",
     padding: 10,
     borderWidth: 1,
-    borderColor: "#000000",
+    borderColor: "#2A2B2E",
+    color: "#2A2B2E",
     borderRadius: 5,
     marginBottom: 15,
   },
-  imagePicker: {
-    width: 150,
-    height: 150,
+  darkInput: {
+    width: "100%",
+    padding: 10,
     borderWidth: 1,
-    borderColor: "#000000",
+    borderColor: "#E9DEDD",
+    color: "#E9DEDD",
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  lightNotesInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#2A2B2E",
+    color: "#2A2B2E",
+    borderRadius: 5,
+    marginBottom: 15,
+    height: 200,
+    textAlignVertical: "top",
+  },
+  darkNotesInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#E9DEDD",
+    color: "#E9DEDD",
+    borderRadius: 5,
+    marginBottom: 15,
+    height: 200,
+    textAlignVertical: "top",
+  },
+  lightImagePicker: {
+    width: imageWidth,
+    height: imageWidth,
+    borderWidth: 1,
+    borderColor: "#2A2B2E",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
+    borderRadius: 10,
+  },
+  darkImagePicker: {
+    width: imageWidth,
+    height: imageWidth,
+    borderWidth: 1,
+    borderColor: "#E9DEDD",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    borderRadius: 10,
   },
   image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
-  imageText: { textAlign: "center", color: "#000000" },
-  saveButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "blue",
-    borderRadius: 5,
-  },
-  saveButtonText: { color: "#FFFFFF", fontSize: 16 },
-  text: { fontSize: 18, marginBottom: 10 },
-
+  lightImageText: { textAlign: "center", color: "#8E8C8E", fontSize: 18 },
+  darkImageText: { textAlign: "center", color: "#8C8484", fontSize: 18 },
   lightNameText: {
     fontSize: 24,
     fontWeight: "bold",
     marginVertical: 10,
     alignSelf: "flex-start",
-    color: "#2A2B2E",
+    color: "#949D6A",
   },
   darkNameText: {
     fontSize: 24,
     fontWeight: "bold",
     marginVertical: 10,
     alignSelf: "flex-start",
-    color: "#E9DEDD",
+    color: "#5A6340",
   },
   lightNotesText: {
-    fontSize: 18,
+    fontSize: 16,
     alignSelf: "flex-start",
     color: "#2A2B2E",
   },
   darkNotesText: {
-    fontSize: 18,
+    fontSize: 16,
     alignSelf: "flex-start",
     color: "#E9DEDD",
   },
@@ -290,7 +349,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   lightButton: {
-    marginTop: "auto",
+    position: "absolute",
+    bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "#F2BB05",
@@ -298,7 +358,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   darkButton: {
-    marginTop: "auto",
+    position: "absolute",
+    bottom: 30,
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "#B28500",
