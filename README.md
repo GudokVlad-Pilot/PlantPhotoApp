@@ -110,6 +110,6 @@ Dark theme colors:
 
 The rest of screenshots can be found in /assets/screenshots.
 
-> [!IMPORTANT]
+[!IMPORTANT]
 
 If you have any questions, you can contact me via email: **vladislavpogudin.dev@gmail.com**
