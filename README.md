@@ -1,4 +1,4 @@
-# Plant App Documentation
+# Plant Photo App Documentation
 
 This is a technical documentation for the Plant Photo App.
 The app was created as a homework assignment for NOCFO.
@@ -42,9 +42,9 @@ When everything is done, you can run the app.
 
 ## The architecture of the app
 
-### Language
+### Language (required by the assignment)
 
-- Typescript (React Native) (Required by the assignment)
+- Typescript (React Native)
 
 ### Data Storage and Management
 
@@ -52,9 +52,20 @@ When everything is done, you can run the app.
 - The data is located in temporary storage (reset when the app restarts).
 - "Plant properties" is used for added data.
 
+### App navigation structure
+
+- List: View for browsing and adding plants.
+- - Plant Collection: The initial view with the list of plants.
+- - Add New Plant: The view for adding plants.
+- - Plant Details: The view for plant details and editing (consists of two modes).
+- Settings (empty): A simple navigable view with placeholder content.
+- Profile (empty): A simple navigable view with placeholder content.
+
 ### Design
 
 The app consist of Bottom navigation bar, Views and Top navigation header in the List View.
+
+The icons for web and mobile versions were desined and added to the app (icon background color: #A3AB82). The same picture was used for the image placeholders.
 
 The design is implemented with light and dark themes (automatically detecting the device theme of a user).
 
@@ -75,12 +86,6 @@ Dark theme colors:
 
 ## Technical decisions
 
-## Navigation
-
-- List: View for browsing and adding plants.
-- Settings (empty): A simple navigable view with placeholder content.
-- Profile (empty): A simple navigable view with placeholder content.
-
 ## Screenshots
 
 ### The List View
@@ -92,4 +97,4 @@ Dark theme colors:
 ### The bottom navigation bar
 ![screenshot](/assets/screenshots/bottom_navigation_bar.jpg)
 
-The rest of screenshots can be found in /assets/screenshots
+The rest of screenshots can be found in /assets/screenshots.
