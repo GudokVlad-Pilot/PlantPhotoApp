@@ -6,47 +6,18 @@ import {
   Image,
   Platform,
   TouchableOpacity,
-  StyleSheet,
   Alert,
-  useColorScheme,
-  Dimensions,
   ScrollView,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "../plantContext/PlantContext";
 import { useRouter, useLocalSearchParams } from "expo-router";
+import theme from "@/assets/styles/theme";
 
 export default function DetailView() {
-  const colorScheme = useColorScheme(); // Detecting the device theme of a user
-
-  // Style defenitions of the components for light/dark theme
-  const themeContainerStyle =
-    colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
-  const themeButton =
-    colorScheme === "light" ? styles.lightButton : styles.darkButton;
-  const themeCancelButton =
-    colorScheme === "light"
-      ? styles.lightCancelButton
-      : styles.darkCancelButton;
-  const themeSaveButton =
-    colorScheme === "light" ? styles.lightSaveButton : styles.darkSaveButton;
-  const themeButtonText =
-    colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
-  const themeDateText =
-    colorScheme === "light" ? styles.lightDateText : styles.darkDateText;
-  const themeNameText =
-    colorScheme === "light" ? styles.lightNameText : styles.darkNameText;
-  const themeNotesText =
-    colorScheme === "light" ? styles.lightNotesText : styles.darkNotesText;
-  const themeInput =
-    colorScheme === "light" ? styles.lightInput : styles.darkInput;
-  const themeNotesInput =
-    colorScheme === "light" ? styles.lightNotesInput : styles.darkNotesInput;
-  const themePlaceholderColor = colorScheme === "light" ? "#8E8C8E" : "#8C8484";
-  const themeImagePicker =
-    colorScheme === "light" ? styles.lightImagePicker : styles.darkImagePicker;
-  const themeImageText =
-    colorScheme === "light" ? styles.lightImageText : styles.darkImageText;
+  // Theme defenition
+  const style = theme();
+  const placeholderColor = "#8E8C8E";
 
   // Context and navigation for the Detail View
   const { id } = useLocalSearchParams();
@@ -184,279 +155,95 @@ export default function DetailView() {
   };
 
   return (
-    <View style={themeContainerStyle}>
+    <View style={style.container}>
       {/* The content of the view is displayed according to the selected mode */}
       {isEditing ? (
         // Edit mode
 
         // Scroll view is used in case of keyboard extention
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <ScrollView contentContainerStyle={style.scrollContainer}>
           {/* Image picker */}
-          <TouchableOpacity onPress={pickImage} style={themeImagePicker}>
+          <TouchableOpacity onPress={pickImage} style={style.imagePicker}>
             {/* If the picture is added, it will be shown in the box. Otherwise, a text will be displayed. */}
             {plantPicture ? (
-              <Image source={{ uri: plantPicture }} style={styles.image} />
+              <Image source={{ uri: plantPicture }} style={style.image} />
             ) : (
-              <Text style={themeImageText}>Add plant picture (optional)</Text>
+              <Text style={style.imagePickerText}>
+                Add plant picture (optional)
+              </Text>
             )}
           </TouchableOpacity>
 
           {/* Input field for plant name (one line field) */}
           <TextInput
             placeholder="Plant Name"
-            placeholderTextColor={themePlaceholderColor}
+            placeholderTextColor={placeholderColor}
             value={name}
             onChangeText={setName}
-            style={themeInput}
+            style={style.input}
             multiline={false}
           />
 
           {/* Input field for notes (multiline scrollable field) */}
           <TextInput
             placeholder="Notes (optional)"
-            placeholderTextColor={themePlaceholderColor}
+            placeholderTextColor={placeholderColor}
             value={notes}
             onChangeText={setNotes}
-            style={themeNotesInput}
+            style={style.notesInput}
             multiline={true}
             scrollEnabled={true}
           />
 
           {/* Cancel button */}
-          <TouchableOpacity onPress={handleCancel} style={themeCancelButton}>
-            <Text style={themeButtonText}>Cancel</Text>
+          <TouchableOpacity onPress={handleCancel} style={style.cancelButton}>
+            <Text style={style.buttonText}>Cancel</Text>
           </TouchableOpacity>
 
           {/* Save button */}
-          <TouchableOpacity onPress={handleSave} style={themeSaveButton}>
-            <Text style={themeButtonText}>Save</Text>
+          <TouchableOpacity onPress={handleSave} style={style.saveButton}>
+            <Text style={style.buttonText}>Save</Text>
           </TouchableOpacity>
         </ScrollView>
       ) : (
         <>
           {/* Scroll view is used to allow user read the plant details if their size is more than the device screen */}
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <ScrollView contentContainerStyle={style.scrollContainer}>
             {/* Date when the plant was added in US format */}
-            <Text style={themeDateText}>Added: {formatDate(addedAt)}</Text>
+            <Text style={style.dateTextDetail}>
+              Added: {formatDate(addedAt)}
+            </Text>
 
             {/* If user added picture of the plant, it will be shown on the card. Otherwise, a placeholder will be displayed. */}
             {plant?.plantPicture ? (
               <Image
                 source={{ uri: plant?.plantPicture }}
-                style={styles.imageDetail}
+                style={style.imageDetail}
               />
             ) : (
               <Image
                 source={require("../../../../assets/images/plants.png")}
-                style={styles.imageDetail}
+                style={style.imageDetail}
               />
             )}
 
             {/* Plant name */}
-            <Text style={themeNameText}>{plant?.name || ""}</Text>
+            <Text style={style.nameText}>{plant?.name || ""}</Text>
 
             {/* If user added notes, they will be shown. Otherwise, nothing will be displayed. */}
             {plant?.notes ? (
-              <Text style={themeNotesText}>{plant?.notes || ""}</Text>
+              <Text style={style.notesText}>{plant?.notes || ""}</Text>
             ) : (
               // An empty fragment is used in case of placeholder could be added
               <></>
             )}
           </ScrollView>
           {/* Edit button that switches the mode to Edit mode */}
-          <TouchableOpacity onPress={handleEdit} style={themeButton}>
-            <Text style={themeButtonText}>Edit</Text>
+          <TouchableOpacity onPress={handleEdit} style={style.button}>
+            <Text style={style.buttonText}>Edit</Text>
           </TouchableOpacity>
         </>
       )}
     </View>
   );
 }
-
-// Window/screen dimensions calculations
-const windowWidth = Dimensions.get("window").width;
-const imageWidth = windowWidth / 2;
-const inputWidth = windowWidth - 40;
-
-// Styles for the components
-const styles = StyleSheet.create({
-  lightContainer: {
-    backgroundColor: "#F1EDEE",
-    flex: 1,
-    alignItems: "center",
-  },
-  darkContainer: {
-    backgroundColor: "#2E2A2B",
-    flex: 1,
-    alignItems: "center",
-  },
-  scrollContainer: {
-    alignItems: "center",
-    paddingBottom: 100,
-    paddingHorizontal: 20,
-  },
-  lightInput: {
-    width: inputWidth,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#2A2B2E",
-    color: "#2A2B2E",
-    borderRadius: 5,
-    marginBottom: 15,
-  },
-  darkInput: {
-    width: inputWidth,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#E9DEDD",
-    color: "#E9DEDD",
-    borderRadius: 5,
-    marginBottom: 15,
-  },
-  lightNotesInput: {
-    width: inputWidth,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#2A2B2E",
-    color: "#2A2B2E",
-    borderRadius: 5,
-    marginBottom: 15,
-    height: 200,
-    textAlignVertical: "top",
-  },
-  darkNotesInput: {
-    width: inputWidth,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#E9DEDD",
-    color: "#E9DEDD",
-    borderRadius: 5,
-    marginBottom: 15,
-    height: 200,
-    textAlignVertical: "top",
-  },
-  lightImagePicker: {
-    width: imageWidth,
-    height: imageWidth,
-    borderWidth: 1,
-    borderColor: "#2A2B2E",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 20,
-    borderRadius: 10,
-  },
-  darkImagePicker: {
-    width: imageWidth,
-    height: imageWidth,
-    borderWidth: 1,
-    borderColor: "#E9DEDD",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 20,
-    borderRadius: 10,
-  },
-  image: { width: imageWidth, height: imageWidth, borderRadius: 10 },
-  lightImageText: { textAlign: "center", color: "#8E8C8E", fontSize: 18 },
-  darkImageText: { textAlign: "center", color: "#8C8484", fontSize: 18 },
-  lightNameText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginVertical: 10,
-    alignSelf: "flex-start",
-    color: "#949D6A",
-  },
-  darkNameText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginVertical: 10,
-    alignSelf: "flex-start",
-    color: "#5A6340",
-  },
-  lightNotesText: {
-    fontSize: 16,
-    alignSelf: "flex-start",
-    color: "#2A2B2E",
-  },
-  darkNotesText: {
-    fontSize: 16,
-    alignSelf: "flex-start",
-    color: "#E9DEDD",
-  },
-  imageDetail: {
-    width: imageWidth * 2 - 40,
-    height: imageWidth * 2 - 40,
-    borderRadius: 10,
-  },
-  lightDateText: {
-    fontSize: 16,
-    color: "#2A2B2E",
-    alignSelf: "flex-start",
-    marginVertical: 10,
-  },
-  darkDateText: {
-    fontSize: 16,
-    color: "#E9DEDD",
-    alignSelf: "flex-start",
-    marginVertical: 10,
-  },
-  lightButton: {
-    position: "absolute",
-    bottom: 30,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#F2BB05",
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  darkButton: {
-    position: "absolute",
-    bottom: 30,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#B28500",
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  lightCancelButton: {
-    position: "absolute",
-    bottom: 30,
-    start: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#F2BB05",
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  darkCancelButton: {
-    position: "absolute",
-    bottom: 30,
-    start: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#B28500",
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  lightSaveButton: {
-    position: "absolute",
-    bottom: 30,
-    end: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#F2BB05",
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  darkSaveButton: {
-    position: "absolute",
-    bottom: 30,
-    end: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#B28500",
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  lightButtonText: { color: "#2A2B2E", fontSize: 16, fontWeight: "bold" },
-  darkButtonText: { color: "#E9DEDD", fontSize: 16, fontWeight: "bold" },
-});
