@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
   Image,
   BackHandler,
+  Button,
 } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { Link, router, useRouter } from "expo-router";
 import { usePlants } from "./plantContext/PlantContext";
 import { useNavigation } from "@react-navigation/native";
 import theme from "@/assets/styles/theme";
+import CustomButton from "@/app/components/CustomButton";
 
 export default function ListView() {
   // Theme defenition
@@ -19,6 +21,11 @@ export default function ListView() {
   // Context and navigation for the List View
   const { plants } = usePlants();
   const navigation = useNavigation();
+
+  // Navigate to Scan View
+  const handleToScan = () => {
+    router.navigate("/scan");
+  };
 
   // Formating the date to align US format
   const formatDate = (date: string | Date) => {
@@ -98,11 +105,12 @@ export default function ListView() {
       />
 
       {/* Button that allows user to navigate to Scan View to add new plant */}
-      <Link href="/scan" asChild>
-        <TouchableOpacity style={style.button}>
-          <Text style={style.buttonText}>Add Plant</Text>
-        </TouchableOpacity>
-      </Link>
+      <CustomButton
+        onPress={handleToScan}
+        buttonText="Add Plant"
+        buttonStyle={style.button}
+        buttonTextStyle={style.buttonText}
+      />
     </View>
   );
 }

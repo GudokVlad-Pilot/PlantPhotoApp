@@ -13,6 +13,7 @@ import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "./plantContext/PlantContext";
 import { useRouter } from "expo-router";
 import theme from "@/assets/styles/theme";
+import CustomButton from "@/app/components/CustomButton";
 
 export default function ScanView() {
   // Theme defenition
@@ -152,9 +153,12 @@ export default function ScanView() {
         />
 
         {/* Save button */}
-        <TouchableOpacity onPress={handleSave} style={style.button}>
-          <Text style={style.buttonText}>Save</Text>
-        </TouchableOpacity>
+        <CustomButton
+          onPress={handleSave}
+          buttonText="Save"
+          buttonStyle={style.button}
+          buttonTextStyle={style.buttonText}
+        />
       </ScrollView>
     </View>
   );

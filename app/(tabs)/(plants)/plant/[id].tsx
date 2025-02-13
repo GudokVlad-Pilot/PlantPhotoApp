@@ -13,6 +13,7 @@ import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "../plantContext/PlantContext";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import theme from "@/assets/styles/theme";
+import CustomButton from "@/app/components/CustomButton";
 
 export default function DetailView() {
   // Theme defenition
@@ -196,14 +197,20 @@ export default function DetailView() {
           />
 
           {/* Cancel button */}
-          <TouchableOpacity onPress={handleCancel} style={style.cancelButton}>
-            <Text style={style.buttonText}>Cancel</Text>
-          </TouchableOpacity>
+          <CustomButton
+            onPress={handleCancel}
+            buttonText="Cancel"
+            buttonStyle={style.cancelButton}
+            buttonTextStyle={style.buttonText}
+          />
 
           {/* Save button */}
-          <TouchableOpacity onPress={handleSave} style={style.saveButton}>
-            <Text style={style.buttonText}>Save</Text>
-          </TouchableOpacity>
+          <CustomButton
+            onPress={handleSave}
+            buttonText="Save"
+            buttonStyle={style.saveButton}
+            buttonTextStyle={style.buttonText}
+          />
         </ScrollView>
       ) : (
         <>
@@ -239,9 +246,12 @@ export default function DetailView() {
             )}
           </ScrollView>
           {/* Edit button that switches the mode to Edit mode */}
-          <TouchableOpacity onPress={handleEdit} style={style.button}>
-            <Text style={style.buttonText}>Edit</Text>
-          </TouchableOpacity>
+          <CustomButton
+            onPress={handleEdit}
+            buttonText="Edit"
+            buttonStyle={style.button}
+            buttonTextStyle={style.buttonText}
+          />
         </>
       )}
     </View>
