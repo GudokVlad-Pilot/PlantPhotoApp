@@ -2,34 +2,19 @@ import React, { useEffect } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   FlatList,
   TouchableOpacity,
   Image,
   BackHandler,
-  Dimensions,
-  useColorScheme,
 } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { usePlants } from "./plantContext/PlantContext";
 import { useNavigation } from "@react-navigation/native";
+import theme from "@/assets/styles/theme";
 
 export default function ListView() {
-  const colorScheme = useColorScheme(); // Detecting the device theme of a user
-
-  // Style defenitions of the components for light/dark theme
-  const themeContainerStyle =
-    colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
-  const themeCardStyle =
-    colorScheme === "light" ? styles.lightCard : styles.darkCard;
-  const themeCardText =
-    colorScheme === "light" ? styles.lightCardText : styles.darkCardText;
-  const themeDateText =
-    colorScheme === "light" ? styles.lightDateText : styles.darkDateText;
-  const themeButton =
-    colorScheme === "light" ? styles.lightButton : styles.darkButton;
-  const themeButtonText =
-    colorScheme === "light" ? styles.lightButtonText : styles.darkButtonText;
+  // Theme defenition
+  const style = theme();
 
   // Context and navigation for the List View
   const { plants } = usePlants();
@@ -68,10 +53,10 @@ export default function ListView() {
   }, [navigation]);
 
   return (
-    <View style={themeContainerStyle}>
+    <View style={style.container}>
       {/* The list with plant cards (grouped into two columns) */}
       <FlatList
-        contentContainerStyle={styles.listContainer}
+        contentContainerStyle={style.listContainer}
         numColumns={2}
         data={plants}
         keyExtractor={(item) => item.id.toString()}
@@ -84,26 +69,26 @@ export default function ListView() {
             }}
             asChild
           >
-            <TouchableOpacity style={themeCardStyle}>
+            <TouchableOpacity style={style.card}>
               {/* If user added picture of the plant, it will be shown on the card. Otherwise, a placeholder will be displayed. */}
               {item.plantPicture ? (
                 <Image
                   source={{ uri: item.plantPicture }}
-                  style={styles.plantImage}
+                  style={style.cardImage}
                 />
               ) : (
                 <Image
                   source={require("../../../assets/images/plants.png")}
-                  style={styles.plantImage}
+                  style={style.cardImage}
                 />
               )}
 
               {/* Plant name */}
-              <Text style={themeCardText}>{item.name}</Text>
+              <Text style={style.cardText}>{item.name}</Text>
 
               {/* Date when the plant was added in US format */}
               {item.addedAt && (
-                <Text style={themeDateText}>
+                <Text style={style.cardDateText}>
                   Added: {formatDate(item.addedAt)}
                 </Text>
               )}
@@ -114,99 +99,10 @@ export default function ListView() {
 
       {/* Button that allows user to navigate to Scan View to add new plant */}
       <Link href="/scan" asChild>
-        <TouchableOpacity style={themeButton}>
-          <Text style={themeButtonText}>Add Plant</Text>
+        <TouchableOpacity style={style.button}>
+          <Text style={style.buttonText}>Add Plant</Text>
         </TouchableOpacity>
       </Link>
     </View>
   );
 }
-
-// Window/screen dimensions calculations
-const windowWidth = Dimensions.get("window").width;
-const cardWidth = (windowWidth - 60) / 2;
-const imageWidth = cardWidth - 20;
-
-// Styles for the components
-const styles = StyleSheet.create({
-  listContainer: {
-    justifyContent: "space-between",
-    paddingBottom: 100,
-    paddingHorizontal: 20,
-  },
-  lightCard: {
-    backgroundColor: "lightgray", // Basic color looks better
-    width: cardWidth,
-    flexDirection: "column",
-    display: "flex",
-    alignItems: "flex-start",
-    padding: 10,
-    marginHorizontal: 5,
-    marginTop: 10,
-    borderRadius: 10,
-  },
-  darkCard: {
-    backgroundColor: "#E9DEDD",
-    width: cardWidth,
-    flexDirection: "column",
-    display: "flex",
-    alignItems: "flex-start",
-    padding: 10,
-    marginHorizontal: 5,
-    marginTop: 10,
-    borderRadius: 10,
-  },
-  lightCardText: { fontSize: 18, color: "#2A2B2E", marginVertical: 10 },
-  darkCardText: { fontSize: 18, color: "#2E2A2B", marginVertical: 10 },
-  plantImage: {
-    width: imageWidth,
-    height: imageWidth,
-    borderRadius: 10,
-  },
-  lightButton: {
-    position: "absolute",
-    bottom: 30,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#F2BB05",
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  darkButton: {
-    position: "absolute",
-    bottom: 30,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#B28500",
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  lightButtonText: { color: "2A2B2E", fontSize: 16, fontWeight: "bold" },
-  darkButtonText: { color: "#E9DEDD", fontSize: 16, fontWeight: "bold" },
-  lightDateText: {
-    fontSize: 12,
-    color: "#2A2B2E",
-    alignSelf: "flex-end",
-    marginTop: "auto",
-  },
-  darkDateText: {
-    fontSize: 12,
-    color: "#2E2A2B",
-    alignSelf: "flex-end",
-    marginTop: "auto",
-  },
-  lightContainer: {
-    backgroundColor: "#F1EDEE",
-    flex: 1,
-  },
-  darkContainer: {
-    backgroundColor: "#2E2A2B",
-    flex: 1,
-  },
-  lightThemeText: {
-    color: "#2A2B2E",
-  },
-  darkThemeText: {
-    color: "#D7CDCC",
-  },
-});
