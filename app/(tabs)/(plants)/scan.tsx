@@ -17,7 +17,7 @@ import theme from "@/assets/styles/theme";
 export default function ScanView() {
   // Theme defenition
   const style = theme();
-  const placeholderColor = "#8E8C8E";
+  const placeholderColor = "gray";
 
   // Context and navigation for the Scan View
   const [name, setName] = useState("");

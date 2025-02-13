@@ -17,7 +17,7 @@ import theme from "@/assets/styles/theme";
 export default function DetailView() {
   // Theme defenition
   const style = theme();
-  const placeholderColor = "#8E8C8E";
+  const placeholderColor = "gray";
 
   // Context and navigation for the Detail View
   const { id } = useLocalSearchParams();
@@ -210,7 +210,7 @@ export default function DetailView() {
           {/* Scroll view is used to allow user read the plant details if their size is more than the device screen */}
           <ScrollView contentContainerStyle={style.scrollContainer}>
             {/* Date when the plant was added in US format */}
-            <Text style={style.dateTextDetail}>
+            <Text style={style.detailDateText}>
               Added: {formatDate(addedAt)}
             </Text>
 
@@ -218,21 +218,21 @@ export default function DetailView() {
             {plant?.plantPicture ? (
               <Image
                 source={{ uri: plant?.plantPicture }}
-                style={style.imageDetail}
+                style={style.detailImage}
               />
             ) : (
               <Image
                 source={require("../../../../assets/images/plants.png")}
-                style={style.imageDetail}
+                style={style.detailImage}
               />
             )}
 
             {/* Plant name */}
-            <Text style={style.nameText}>{plant?.name || ""}</Text>
+            <Text style={style.detailName}>{plant?.name || ""}</Text>
 
             {/* If user added notes, they will be shown. Otherwise, nothing will be displayed. */}
             {plant?.notes ? (
-              <Text style={style.notesText}>{plant?.notes || ""}</Text>
+              <Text style={style.detailNotes}>{plant?.notes || ""}</Text>
             ) : (
               // An empty fragment is used in case of placeholder could be added
               <></>

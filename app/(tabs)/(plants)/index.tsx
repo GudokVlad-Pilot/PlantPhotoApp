@@ -74,12 +74,12 @@ export default function ListView() {
               {item.plantPicture ? (
                 <Image
                   source={{ uri: item.plantPicture }}
-                  style={style.plantImage}
+                  style={style.cardImage}
                 />
               ) : (
                 <Image
                   source={require("../../../assets/images/plants.png")}
-                  style={style.plantImage}
+                  style={style.cardImage}
                 />
               )}
 
@@ -88,7 +88,7 @@ export default function ListView() {
 
               {/* Date when the plant was added in US format */}
               {item.addedAt && (
-                <Text style={style.dateText}>
+                <Text style={style.cardDateText}>
                   Added: {formatDate(item.addedAt)}
                 </Text>
               )}

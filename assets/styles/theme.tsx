@@ -9,10 +9,8 @@ export default function theme() {
   const secondary = colorScheme === "light" ? "#F2BB05" : "#B28500";
   const tertiary = colorScheme === "light" ? "#F1EDEE" : "#2E2A2B";
   const quaternary = colorScheme === "light" ? "#2A2B2E" : "#D7CDCC";
-  const inputColor = colorScheme === "light" ? "#2A2B2E" : "#E9DEDD";
   const cardColor = colorScheme === "light" ? "lightgray" : "#E9DEDD";
-  const cardTextColor = colorScheme === "light" ? "#2A2B2E" : "#2E2A2B";
-  const imagePickerTextColor = colorScheme === "light" ? "#8E8C8E" : "#8C8484";
+  const imagePickerTextColor = "gray";
 
   // Window/screen dimensions calculations
   const windowWidth = Dimensions.get("window").width;
@@ -22,15 +20,12 @@ export default function theme() {
   const inputWidth = windowWidth - 40;
 
   return StyleSheet.create({
+    // Containers
     container: {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: tertiary,
-    },
-    text: {
-      fontSize: 18,
-      color: quaternary,
     },
     listContainer: {
       justifyContent: "space-between",
@@ -43,6 +38,8 @@ export default function theme() {
       paddingBottom: 80,
       paddingHorizontal: 20,
     },
+
+    // Cards
     card: {
       width: cardWidth,
       flexDirection: "column",
@@ -54,29 +51,20 @@ export default function theme() {
       borderRadius: 10,
       backgroundColor: cardColor,
     },
-    cardText: { fontSize: 18, color: cardTextColor, marginVertical: 10 },
-    plantImage: {
+    cardText: { fontSize: 18, color: quaternary, marginVertical: 10 },
+    cardImage: {
       width: plantImageWidth,
       height: plantImageWidth,
       borderRadius: 10,
     },
-    dateText: {
+    cardDateText: {
       fontSize: 12,
-      color: cardTextColor,
+      color: quaternary,
       alignSelf: "flex-end",
       marginTop: "auto",
     },
-    dateTextDetail: {
-      fontSize: 16,
-      color: inputColor,
-      alignSelf: "flex-start",
-      marginVertical: 10,
-    },
-    imageDetail: {
-      width: inputWidth,
-      height: inputWidth,
-      borderRadius: 10,
-    },
+
+    // Buttons
     button: {
       position: "absolute",
       bottom: 30,
@@ -107,6 +95,8 @@ export default function theme() {
       alignSelf: "center",
     },
     buttonText: { color: quaternary, fontSize: 16, fontWeight: "bold" },
+
+    // Scan/Edit
     imagePicker: {
       width: imagePickerWidth,
       height: imagePickerWidth,
@@ -131,8 +121,8 @@ export default function theme() {
       width: inputWidth,
       padding: 10,
       borderWidth: 1,
-      borderColor: inputColor,
-      color: inputColor,
+      borderColor: quaternary,
+      color: quaternary,
       borderRadius: 5,
       marginBottom: 15,
     },
@@ -140,24 +130,43 @@ export default function theme() {
       width: inputWidth,
       padding: 10,
       borderWidth: 1,
-      borderColor: inputColor,
-      color: inputColor,
+      borderColor: quaternary,
+      color: quaternary,
       borderRadius: 5,
       marginBottom: 15,
       height: 200,
       textAlignVertical: "top",
     },
-    nameText: {
+
+    // Detail
+    detailDateText: {
+      fontSize: 16,
+      color: quaternary,
+      alignSelf: "flex-start",
+      marginVertical: 10,
+    },
+    detailImage: {
+      width: inputWidth,
+      height: inputWidth,
+      borderRadius: 10,
+    },
+    detailName: {
       fontSize: 24,
       fontWeight: "bold",
       marginVertical: 10,
       alignSelf: "flex-start",
       color: primary,
     },
-    notesText: {
+    detailNotes: {
       fontSize: 16,
       alignSelf: "flex-start",
-      color: inputColor,
+      color: quaternary,
+    },
+
+    // Placeholders
+    text: {
+      fontSize: 18,
+      color: quaternary,
     },
   });
 }
