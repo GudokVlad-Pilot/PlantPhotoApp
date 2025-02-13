@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Image,
-  Platform,
-  Alert,
-  ScrollView,
-} from "react-native";
+import { View, Text, Image, Platform, Alert, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "../plantContext/PlantContext";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import theme from "@/assets/styles/theme";
 import CustomButton from "@/app/components/CustomButton";
 import CustomImagePicker from "@/app/components/CustomImagePicker";
+import CustomDetailInput from "@/app/components/CustomDetailInput";
 
 export default function DetailView() {
   // Theme defenition
@@ -173,25 +166,15 @@ export default function DetailView() {
             imagePickerText={"Add plant picture (optional)"}
           />
 
-          {/* Input field for plant name (one line field) */}
-          <TextInput
-            placeholder="Plant Name"
-            placeholderTextColor={placeholderColor}
-            value={name}
-            onChangeText={setName}
-            style={style.input}
-            multiline={false}
-          />
-
-          {/* Input field for notes (multiline scrollable field) */}
-          <TextInput
-            placeholder="Notes (optional)"
-            placeholderTextColor={placeholderColor}
-            value={notes}
-            onChangeText={setNotes}
-            style={style.notesInput}
-            multiline={true}
-            scrollEnabled={true}
+          {/* Input fields for plant details */}
+          <CustomDetailInput
+            placeholderColor={placeholderColor}
+            plantName={name}
+            plantNotes={notes}
+            setPlantName={setName}
+            setPlantNotes={setNotes}
+            inputStyle={style.input}
+            notesInputStyle={style.notesInput}
           />
 
           {/* Cancel button */}
