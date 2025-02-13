@@ -1,19 +1,11 @@
 import { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Image,
-  Platform,
-  TouchableOpacity,
-  Alert,
-  ScrollView,
-} from "react-native";
+import { View, TextInput, Platform, Alert, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { usePlants } from "./plantContext/PlantContext";
 import { useRouter } from "expo-router";
 import theme from "@/assets/styles/theme";
 import CustomButton from "@/app/components/CustomButton";
+import CustomImagePicker from "@/app/components/CustomImagePicker";
 
 export default function ScanView() {
   // Theme defenition
@@ -120,16 +112,14 @@ export default function ScanView() {
       {/* Scroll view is used in case of keyboard extention */}
       <ScrollView contentContainerStyle={style.scrollContainer}>
         {/* Image picker */}
-        <TouchableOpacity onPress={pickImage} style={style.imagePicker}>
-          {/* If the picture is added, it will be shown in the box. Otherwise, a text will be displayed. */}
-          {plantPicture ? (
-            <Image source={{ uri: plantPicture }} style={style.image} />
-          ) : (
-            <Text style={style.imagePickerText}>
-              Add plant picture (optional)
-            </Text>
-          )}
-        </TouchableOpacity>
+        <CustomImagePicker
+          onPress={pickImage}
+          imagePickerStyle={style.imagePicker}
+          imageStyle={style.image}
+          imagePickerTextStyle={style.imagePickerText}
+          image={plantPicture}
+          imagePickerText={"Add plant picture (optional)"}
+        />
 
         {/* Input field for plant name (one line field) */}
         <TextInput
