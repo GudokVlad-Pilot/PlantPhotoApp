@@ -9,13 +9,17 @@ export default function theme() {
   const secondary = colorScheme === "light" ? "#F2BB05" : "#B28500";
   const tertiary = colorScheme === "light" ? "#F1EDEE" : "#2E2A2B";
   const quaternary = colorScheme === "light" ? "#2A2B2E" : "#D7CDCC";
+  const inputColor = colorScheme === "light" ? "#2A2B2E" : "#E9DEDD";
   const cardColor = colorScheme === "light" ? "lightgray" : "#E9DEDD";
-  const cardText = colorScheme === "light" ? "#2A2B2E" : "#2E2A2B";
+  const cardTextColor = colorScheme === "light" ? "#2A2B2E" : "#2E2A2B";
+  const imagePickerTextColor = colorScheme === "light" ? "#8E8C8E" : "#8C8484";
 
   // Window/screen dimensions calculations
   const windowWidth = Dimensions.get("window").width;
   const cardWidth = (windowWidth - 60) / 2;
-  const imageWidth = cardWidth - 20;
+  const plantImageWidth = cardWidth - 20;
+  const imagePickerWidth = windowWidth / 2;
+  const inputWidth = windowWidth - 40;
 
   return StyleSheet.create({
     container: {
@@ -34,6 +38,11 @@ export default function theme() {
       paddingHorizontal: 20,
       width: windowWidth,
     },
+    scrollContainer: {
+      alignItems: "center",
+      paddingBottom: 80,
+      paddingHorizontal: 20,
+    },
     card: {
       width: cardWidth,
       flexDirection: "column",
@@ -45,15 +54,15 @@ export default function theme() {
       borderRadius: 10,
       backgroundColor: cardColor,
     },
-    cardText: { fontSize: 18, color: "#2A2B2E", marginVertical: 10 },
+    cardText: { fontSize: 18, color: cardTextColor, marginVertical: 10 },
     plantImage: {
-      width: imageWidth,
-      height: imageWidth,
+      width: plantImageWidth,
+      height: plantImageWidth,
       borderRadius: 10,
     },
     dateText: {
       fontSize: 12,
-      color: quaternary,
+      color: cardTextColor,
       alignSelf: "flex-end",
       marginTop: "auto",
     },
@@ -67,5 +76,45 @@ export default function theme() {
       alignSelf: "center",
     },
     buttonText: { color: quaternary, fontSize: 16, fontWeight: "bold" },
+    imagePicker: {
+      width: imagePickerWidth,
+      height: imagePickerWidth,
+      borderWidth: 1,
+      borderColor: quaternary,
+      justifyContent: "center",
+      alignItems: "center",
+      marginVertical: 20,
+      borderRadius: 10,
+    },
+    image: {
+      width: imagePickerWidth,
+      height: imagePickerWidth,
+      borderRadius: 10,
+    },
+    imagePickerText: {
+      textAlign: "center",
+      color: imagePickerTextColor,
+      fontSize: 18,
+    },
+    input: {
+      width: inputWidth,
+      padding: 10,
+      borderWidth: 1,
+      borderColor: inputColor,
+      color: inputColor,
+      borderRadius: 5,
+      marginBottom: 15,
+    },
+    notesInput: {
+      width: inputWidth,
+      padding: 10,
+      borderWidth: 1,
+      borderColor: inputColor,
+      color: inputColor,
+      borderRadius: 5,
+      marginBottom: 15,
+      height: 200,
+      textAlignVertical: "top",
+    },
   });
 }
