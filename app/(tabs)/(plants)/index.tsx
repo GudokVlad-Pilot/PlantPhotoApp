@@ -13,7 +13,7 @@ import { usePlants } from "./plantContext/PlantContext";
 import { useNavigation } from "@react-navigation/native";
 import theme from "@/assets/styles/theme";
 import CustomButton from "@/app/components/CustomButton";
-import CustomCard from "@/app/components/CustomCard";
+import CustomPlantCard from "@/app/components/CustomPlantCard";
 
 export default function ListView() {
   // Theme defenition
@@ -60,22 +60,13 @@ export default function ListView() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           // Card as a link that allows user to navigate to Detail View
-          <Link
-            href={{
-              pathname: "/plant/[id]",
-              params: { id: item.id.toString() },
-            }}
-            asChild
-          >
-            <TouchableOpacity style={style.card}>
-              <CustomCard
-                item={item}
-                cardTextStyle={style.cardText}
-                cardDateTextStyle={style.cardDateText}
-                cardImageStyle={style.cardImage}
-              />
-            </TouchableOpacity>
-          </Link>
+          <CustomPlantCard
+            item={item}
+            cardStyle={style.card}
+            cardTextStyle={style.cardText}
+            cardDateTextStyle={style.cardDateText}
+            cardImageStyle={style.cardImage}
+          />
         )}
       />
 
