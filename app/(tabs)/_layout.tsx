@@ -36,6 +36,8 @@ export default function TabsLayout() {
           borderColor: themeBackgroundStyle,
         },
         headerShown: false,
+        tabBarHideOnKeyboard: true,
+        tabBarPosition: "bottom"
       })}
     >
       {/* Screens/views where the user can navigate with bottom bar */}
