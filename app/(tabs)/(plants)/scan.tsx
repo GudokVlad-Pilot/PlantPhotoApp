@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Alert } from "react-native";
 import { usePlants } from "./plantContext/PlantContext";
 import { useRouter } from "expo-router";
 import theme from "@/assets/styles/theme";
@@ -25,7 +25,10 @@ export default function ScanView() {
       addPlant(name, notes.trim() || undefined, plantPicture || undefined);
       router.back(); // Once saved, the user will be navigated back to List View
     } else {
-      alert("Plant name is required"); // User will receive an alert if plant name is missing
+      Alert.alert(
+        "Warning", // Making alert not too agressive
+        "Please, enter the plant name"
+      ); // User will receive an alert if plant name is missing
     }
   };
 

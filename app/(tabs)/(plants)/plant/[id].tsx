@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, Alert } from "react-native";
 import { usePlants } from "../plantContext/PlantContext";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import theme from "@/assets/styles/theme";
@@ -52,7 +52,10 @@ export default function DetailView() {
       updatePlant(Number(id), name, notes, plantPicture || undefined);
       setIsEditing(false); // Once saved, the view will be switched to Detail mode
     } else {
-      alert("Plant name is required"); // User will receive an alert if plant name is missing
+      Alert.alert(
+        "Warning", // Making alert not too agressive
+        "Please, enter the plant name"
+      ); // User will receive an alert if plant name is missing
     }
   };
 
