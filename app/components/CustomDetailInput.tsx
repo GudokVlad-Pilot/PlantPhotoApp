@@ -24,7 +24,7 @@ const CustomDetailInput: React.FC<CustomDetailInputProps> = ({
     <>
       {/* Input field for plant name (one line field) */}
       <TextInput
-        placeholder="Plant name"
+        placeholder="Plant name" // The placeholder is predefined as this component will be used only with plants
         placeholderTextColor={placeholderColor}
         value={plantName}
         onChangeText={setPlantName}
@@ -34,7 +34,7 @@ const CustomDetailInput: React.FC<CustomDetailInputProps> = ({
 
       {/* Input field for notes (multiline scrollable field) */}
       <TextInput
-        placeholder="Notes (optional)"
+        placeholder="Notes (optional)" // The placeholder is predefined as this component will be used only with plants
         placeholderTextColor={placeholderColor}
         value={plantNotes}
         onChangeText={setPlantNotes}
