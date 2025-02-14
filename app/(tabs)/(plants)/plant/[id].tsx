@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, Platform, Alert, ScrollView } from "react-native";
-import * as ImagePicker from "expo-image-picker";
+import { View, Text, Image, ScrollView } from "react-native";
 import { usePlants } from "../plantContext/PlantContext";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import theme from "@/assets/styles/theme";
@@ -70,84 +69,6 @@ export default function DetailView() {
     setPlantPicture(plant?.plantPicture || null);
   };
 
-  // Image picker from device storage or camera
-  const pickImage = async () => {
-    // Checking if the app is launched on the web
-    if (Platform.OS === "web") {
-      // Picking the image from device storage
-      const input = document.createElement("input");
-      input.type = "file";
-      input.accept = "image/*";
-      input.onchange = (event: any) => {
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = () => setPlantPicture(reader.result as string); // Transfering file to string for context
-          reader.readAsDataURL(file);
-        }
-      };
-      input.click();
-    } else {
-      // If the app is launched on mobile device, it creates alert
-      Alert.alert(
-        "Select Plant Picture",
-        "Add photo from Camera or Gallery",
-        [
-          {
-            // Camera option
-            text: "Camera",
-            onPress: async () => {
-              // Requesting permissions to use camera
-              const { status } =
-                await ImagePicker.requestCameraPermissionsAsync();
-              if (status !== "granted") {
-                alert("Permission to access camera is required!");
-                return;
-              }
-
-              // Lauching the camera
-              const result = await ImagePicker.launchCameraAsync({
-                allowsEditing: true,
-                aspect: [1, 1], // Image cropping is required, as the app images are displayed in square format
-                quality: 1,
-              });
-
-              if (!result.canceled && result.assets.length > 0) {
-                setPlantPicture(result.assets[0].uri);
-              }
-            },
-          },
-          {
-            // Gallery option
-            text: "Gallery",
-            onPress: async () => {
-              // Requesting permissions to use gallery
-              const { status } =
-                await ImagePicker.requestMediaLibraryPermissionsAsync();
-              if (status !== "granted") {
-                alert("Permission to access gallery is required!");
-                return;
-              }
-
-              // Openning the gallery
-              const result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-                aspect: [1, 1], // Image cropping is required, as the app images are displayed in square format
-                quality: 1,
-              });
-
-              if (!result.canceled && result.assets.length > 0) {
-                setPlantPicture(result.assets[0].uri);
-              }
-            },
-          },
-        ],
-        { cancelable: true } // Alert can be closed by clicking outside the box or "back" button
-      );
-    }
-  };
-
   return (
     <View style={style.container}>
       {/* The content of the view is displayed according to the selected mode */}
@@ -158,12 +79,13 @@ export default function DetailView() {
         <ScrollView contentContainerStyle={style.scrollContainer}>
           {/* Image picker */}
           <CustomImagePicker
-            onPress={pickImage}
+            imageCase={"Plant"}
             imagePickerStyle={style.imagePicker}
             imageStyle={style.image}
             imagePickerTextStyle={style.imagePickerText}
-            image={plantPicture}
             imagePickerText={"Add plant picture (optional)"}
+            imagePredefined={plant?.plantPicture}
+            onImageSelected={(imageUri) => setPlantPicture(imageUri)}
           />
 
           {/* Input fields for plant details */}
