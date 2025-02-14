@@ -6,11 +6,14 @@ import {
   TouchableOpacity,
   Image,
   BackHandler,
+  Button,
 } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { Link, router, useRouter } from "expo-router";
 import { usePlants } from "./plantContext/PlantContext";
 import { useNavigation } from "@react-navigation/native";
 import theme from "@/assets/styles/theme";
+import CustomButton from "@/app/components/CustomButton";
+import CustomPlantCard from "@/app/components/CustomPlantCard";
 
 export default function ListView() {
   // Theme defenition
@@ -20,14 +23,9 @@ export default function ListView() {
   const { plants } = usePlants();
   const navigation = useNavigation();
 
-  // Formating the date to align US format
-  const formatDate = (date: string | Date) => {
-    const newDate = new Date(date);
-    return newDate.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
+  // Navigate to Scan View
+  const handleToScan = () => {
+    router.navigate("/scan");
   };
 
   useEffect(() => {
@@ -62,47 +60,23 @@ export default function ListView() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           // Card as a link that allows user to navigate to Detail View
-          <Link
-            href={{
-              pathname: "/plant/[id]",
-              params: { id: item.id.toString() },
-            }}
-            asChild
-          >
-            <TouchableOpacity style={style.card}>
-              {/* If user added picture of the plant, it will be shown on the card. Otherwise, a placeholder will be displayed. */}
-              {item.plantPicture ? (
-                <Image
-                  source={{ uri: item.plantPicture }}
-                  style={style.cardImage}
-                />
-              ) : (
-                <Image
-                  source={require("../../../assets/images/plants.png")}
-                  style={style.cardImage}
-                />
-              )}
-
-              {/* Plant name */}
-              <Text style={style.cardText}>{item.name}</Text>
-
-              {/* Date when the plant was added in US format */}
-              {item.addedAt && (
-                <Text style={style.cardDateText}>
-                  Added: {formatDate(item.addedAt)}
-                </Text>
-              )}
-            </TouchableOpacity>
-          </Link>
+          <CustomPlantCard
+            item={item}
+            cardStyle={style.card}
+            cardTextStyle={style.cardText}
+            cardDateTextStyle={style.cardDateText}
+            cardImageStyle={style.cardImage}
+          />
         )}
       />
 
       {/* Button that allows user to navigate to Scan View to add new plant */}
-      <Link href="/scan" asChild>
-        <TouchableOpacity style={style.button}>
-          <Text style={style.buttonText}>Add Plant</Text>
-        </TouchableOpacity>
-      </Link>
+      <CustomButton
+        onPress={handleToScan}
+        buttonText="Add Plant"
+        buttonStyle={style.button}
+        buttonTextStyle={style.buttonText}
+      />
     </View>
   );
 }

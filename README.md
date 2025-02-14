@@ -90,6 +90,7 @@ Dark theme colors:
 
 - Comments were added to each file to simplify the understanding of code.
 - The components are using theme from the theme file to avoid code repetitions. Layouts are using their own hooks for themes because they do not accept StyleSheets.
+- Custom components are used to avoid repetitions in the code.
 - The app can be launched on the web in case of users are using not only the mobile devices.
 - Two modes were used in Detail View as it was required to add the possibility to show the details and edit in the same View.
   - Edit mode looks similar to Scan View because it is user-friendly to have familiar design (user gets familiar with entering the data from Scan View and it is easier for them to use the same format in Edit mode).

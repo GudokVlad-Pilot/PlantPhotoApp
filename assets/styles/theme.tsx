@@ -10,6 +10,7 @@ export default function theme() {
   const tertiary = colorScheme === "light" ? "#F1EDEE" : "#2E2A2B";
   const quaternary = colorScheme === "light" ? "#2A2B2E" : "#D7CDCC";
   const cardColor = colorScheme === "light" ? "lightgray" : "#E9DEDD";
+  const cardTextColor = colorScheme === "light" ? "#2A2B2E" : "#2E2A2B";
   const imagePickerTextColor = "gray";
 
   // Window/screen dimensions calculations
@@ -51,7 +52,7 @@ export default function theme() {
       borderRadius: 10,
       backgroundColor: cardColor,
     },
-    cardText: { fontSize: 18, color: quaternary, marginVertical: 10 },
+    cardText: { fontSize: 18, color: cardTextColor, marginVertical: 10 },
     cardImage: {
       width: plantImageWidth,
       height: plantImageWidth,
@@ -59,7 +60,7 @@ export default function theme() {
     },
     cardDateText: {
       fontSize: 12,
-      color: quaternary,
+      color: cardTextColor,
       alignSelf: "flex-end",
       marginTop: "auto",
     },

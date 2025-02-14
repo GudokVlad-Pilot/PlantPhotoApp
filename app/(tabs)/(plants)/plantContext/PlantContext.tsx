@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 
 // Plant properties
-type Plant = {
+export type Plant = {
   id: number;
   name: string;
   notes?: string;
