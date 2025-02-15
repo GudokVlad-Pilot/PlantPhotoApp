@@ -5,10 +5,10 @@ The app was created as a homework assignment for NOCFO.
 Implemented with React Native.
 
 > [!NOTE]
-> In this update were added:
-> - Theme file with styles.
+> In this update:
+> - Theme file with styles were added.
 > - Tab buttons are hidden when keyboard is used.
-> - Custom components added to avoid code repetitions.
+> - Custom components were added to avoid code repetitions.
 > - Alerts are less agressive and inconcistent alert united in one custom component.
 
 ## Setting the environment
