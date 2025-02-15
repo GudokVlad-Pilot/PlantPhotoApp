@@ -1,17 +1,33 @@
 import { Dimensions, StyleSheet, useColorScheme } from "react-native";
 
-export default function theme() {
+export function useThemeColors() {
   // Color set defenition
   const colorScheme = useColorScheme(); // Detecting the device theme of a user
 
-  // Style defenitions of the components for light/dark theme
-  const primary = colorScheme === "light" ? "#949D6A" : "#5A6340";
-  const secondary = colorScheme === "light" ? "#2A2B2E" : "#D7CDCC";
-  const base = colorScheme === "light" ? "#F1EDEE" : "#2E2A2B";
-  const accent = colorScheme === "light" ? "#F2BB05" : "#B28500";
-  const cardColor = colorScheme === "light" ? "lightgray" : "#E9DEDD";
-  const cardTextColor = colorScheme === "light" ? "#2A2B2E" : "#2E2A2B";
-  const imagePickerTextColor = "gray";
+  return {
+    // Style defenitions of the components for light/dark theme
+    primary: colorScheme === "light" ? "#949D6A" : "#5A6340",
+    secondary: colorScheme === "light" ? "#2A2B2E" : "#D7CDCC",
+    base: colorScheme === "light" ? "#F1EDEE" : "#2E2A2B",
+    accent: colorScheme === "light" ? "#F2BB05" : "#B28500",
+    barElementColor: colorScheme === "light" ? "#F1EDEE" : "#D7CDCC",
+    cardColor: colorScheme === "light" ? "lightgray" : "#E9DEDD",
+    cardTextColor: colorScheme === "light" ? "#2A2B2E" : "#2E2A2B",
+    imagePickerTextColor: "gray",
+  };
+}
+
+export default function theme() {
+  // Colors for components
+  const {
+    primary,
+    secondary,
+    base,
+    accent,
+    cardColor,
+    cardTextColor,
+    imagePickerTextColor,
+  } = useThemeColors();
 
   // Window/screen dimensions calculations
   const windowWidth = Dimensions.get("window").width;

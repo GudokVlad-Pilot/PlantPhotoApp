@@ -2,13 +2,11 @@ import React from "react";
 import { Stack } from "expo-router";
 import { PlantProvider } from "./plantContext/PlantContext";
 import { useColorScheme } from "react-native";
+import { useThemeColors } from "@/assets/styles/theme";
 
 export default function PlantsLayout() {
-  const colorScheme = useColorScheme(); // Detecting the device theme of a user
-
-  // Style defenitions of the components for light/dark theme
-  const themeBackgroundStyle = colorScheme === "light" ? "#949D6A" : "#5A6340";
-  const themeTextStyle = colorScheme === "light" ? "#F1EDEE" : "#D7CDCC";
+  // Colors for top bar
+  const { primary, barElementColor } = useThemeColors();
 
   return (
     // The context for storing plants details
@@ -18,9 +16,9 @@ export default function PlantsLayout() {
         // Top bar styles
         screenOptions={{
           headerStyle: {
-            backgroundColor: themeBackgroundStyle,
+            backgroundColor: primary,
           },
-          headerTintColor: themeTextStyle,
+          headerTintColor: barElementColor,
           headerTitleStyle: {
             fontWeight: "bold",
           },
