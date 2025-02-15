@@ -40,6 +40,13 @@ When everything is done, you can run the app.
 
 3. Scan a QR code that will be displayed in the output with Expo Go, this launch the app on your mobile device. Web version is also available via link in the output, but the app is made primarily for mobile devices as it was the platform required by the assignment.
 
+> [!NOTE]
+> In this update were added:
+> - Theme file with styles.
+> - Tab buttons are hidden when keyboard is used.
+> - Custom components added to avoid code repetitions.
+> - Alerts are less agressive and inconcistent alert united in one custom component.
+
 ## The architecture of the app
 
 ### Language (required by the assignment)

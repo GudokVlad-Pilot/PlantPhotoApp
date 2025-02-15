@@ -37,7 +37,7 @@ export default function TabsLayout() {
         },
         headerShown: false,
         tabBarHideOnKeyboard: true,
-        tabBarPosition: "bottom"
+        tabBarPosition: "bottom",
       })}
     >
       {/* Screens/views where the user can navigate with bottom bar */}
