@@ -1,17 +1,33 @@
 import { Dimensions, StyleSheet, useColorScheme } from "react-native";
 
-export default function theme() {
+export function useThemeColors() {
   // Color set defenition
   const colorScheme = useColorScheme(); // Detecting the device theme of a user
 
-  // Style defenitions of the components for light/dark theme
-  const primary = colorScheme === "light" ? "#949D6A" : "#5A6340";
-  const secondary = colorScheme === "light" ? "#F2BB05" : "#B28500";
-  const tertiary = colorScheme === "light" ? "#F1EDEE" : "#2E2A2B";
-  const quaternary = colorScheme === "light" ? "#2A2B2E" : "#D7CDCC";
-  const cardColor = colorScheme === "light" ? "lightgray" : "#E9DEDD";
-  const cardTextColor = colorScheme === "light" ? "#2A2B2E" : "#2E2A2B";
-  const imagePickerTextColor = "gray";
+  return {
+    // Style defenitions of the components for light/dark theme
+    primary: colorScheme === "light" ? "#949D6A" : "#5A6340",
+    secondary: colorScheme === "light" ? "#2A2B2E" : "#D7CDCC",
+    base: colorScheme === "light" ? "#F1EDEE" : "#2E2A2B",
+    accent: colorScheme === "light" ? "#F2BB05" : "#B28500",
+    barElementColor: colorScheme === "light" ? "#F1EDEE" : "#D7CDCC",
+    cardColor: colorScheme === "light" ? "lightgray" : "#E9DEDD",
+    cardTextColor: colorScheme === "light" ? "#2A2B2E" : "#2E2A2B",
+    imagePickerTextColor: "gray",
+  };
+}
+
+export default function theme() {
+  // Colors for components
+  const {
+    primary,
+    secondary,
+    base,
+    accent,
+    cardColor,
+    cardTextColor,
+    imagePickerTextColor,
+  } = useThemeColors();
 
   // Window/screen dimensions calculations
   const windowWidth = Dimensions.get("window").width;
@@ -26,7 +42,7 @@ export default function theme() {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: tertiary,
+      backgroundColor: base,
     },
     listContainer: {
       justifyContent: "space-between",
@@ -71,7 +87,7 @@ export default function theme() {
       bottom: 30,
       paddingVertical: 10,
       paddingHorizontal: 20,
-      backgroundColor: secondary,
+      backgroundColor: accent,
       borderRadius: 10,
       alignSelf: "center",
     },
@@ -81,7 +97,7 @@ export default function theme() {
       start: 20,
       paddingVertical: 10,
       paddingHorizontal: 20,
-      backgroundColor: secondary,
+      backgroundColor: accent,
       borderRadius: 10,
       alignSelf: "center",
     },
@@ -91,18 +107,18 @@ export default function theme() {
       end: 20,
       paddingVertical: 10,
       paddingHorizontal: 20,
-      backgroundColor: secondary,
+      backgroundColor: accent,
       borderRadius: 10,
       alignSelf: "center",
     },
-    buttonText: { color: quaternary, fontSize: 16, fontWeight: "bold" },
+    buttonText: { color: secondary, fontSize: 16, fontWeight: "bold" },
 
     // Scan/Edit
     imagePicker: {
       width: imagePickerWidth,
       height: imagePickerWidth,
       borderWidth: 1,
-      borderColor: quaternary,
+      borderColor: secondary,
       justifyContent: "center",
       alignItems: "center",
       marginVertical: 20,
@@ -122,8 +138,8 @@ export default function theme() {
       width: inputWidth,
       padding: 10,
       borderWidth: 1,
-      borderColor: quaternary,
-      color: quaternary,
+      borderColor: secondary,
+      color: secondary,
       borderRadius: 5,
       marginBottom: 15,
     },
@@ -131,8 +147,8 @@ export default function theme() {
       width: inputWidth,
       padding: 10,
       borderWidth: 1,
-      borderColor: quaternary,
-      color: quaternary,
+      borderColor: secondary,
+      color: secondary,
       borderRadius: 5,
       marginBottom: 15,
       height: 200,
@@ -142,7 +158,7 @@ export default function theme() {
     // Detail
     detailDateText: {
       fontSize: 16,
-      color: quaternary,
+      color: secondary,
       alignSelf: "flex-start",
       marginVertical: 10,
     },
@@ -161,13 +177,13 @@ export default function theme() {
     detailNotes: {
       fontSize: 16,
       alignSelf: "flex-start",
-      color: quaternary,
+      color: secondary,
     },
 
     // Placeholders
     text: {
       fontSize: 18,
-      color: quaternary,
+      color: secondary,
     },
   });
 }

@@ -26,8 +26,8 @@ export default function ScanView() {
       router.back(); // Once saved, the user will be navigated back to List View
     } else {
       Alert.alert(
-        "Warning", // Making alert not too agressive
-        "Please, enter the plant name"
+        "Plant Name Required", // Making alert not too agressive
+        "Please, enter the name your plant"
       ); // User will receive an alert if plant name is missing
     }
   };

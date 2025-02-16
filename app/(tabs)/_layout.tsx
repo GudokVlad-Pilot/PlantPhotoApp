@@ -1,14 +1,14 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { useColorScheme } from "react-native";
+import { useThemeColors } from "@/assets/styles/theme";
 
 export default function TabsLayout() {
-  const colorScheme = useColorScheme(); // Detecting the device theme of a user
-
-  // Style defenitions of the components for light/dark theme
-  const themeBackgroundStyle = colorScheme === "light" ? "#949D6A" : "#5A6340";
-  const themeBarActiveStyle = colorScheme === "light" ? "#F2BB05" : "#B28500";
-  const themeBarInactiveStyle = colorScheme === "light" ? "#F1EDEE" : "#D7CDCC";
+  // Colors for bottom bar
+  const {
+      primary,
+      accent,
+      barElementColor,
+    } = useThemeColors();
 
   return (
     // Navigation with tabs
@@ -29,15 +29,15 @@ export default function TabsLayout() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         // Bottom navigation bar styles
-        tabBarActiveTintColor: themeBarActiveStyle,
-        tabBarInactiveTintColor: themeBarInactiveStyle,
+        tabBarActiveTintColor: accent,
+        tabBarInactiveTintColor: barElementColor,
         tabBarStyle: {
-          backgroundColor: themeBackgroundStyle,
-          borderColor: themeBackgroundStyle,
+          backgroundColor: primary,
+          borderColor: primary,
         },
         headerShown: false,
         tabBarHideOnKeyboard: true,
-        tabBarPosition: "bottom"
+        tabBarPosition: "bottom",
       })}
     >
       {/* Screens/views where the user can navigate with bottom bar */}

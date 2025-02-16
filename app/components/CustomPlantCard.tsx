@@ -1,5 +1,13 @@
 import React from "react";
-import { Text, StyleProp, TextStyle, Image, ImageStyle, TouchableOpacity, ViewStyle } from "react-native";
+import {
+  Text,
+  StyleProp,
+  TextStyle,
+  Image,
+  ImageStyle,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 import { Plant } from "../(tabs)/(plants)/plantContext/PlantContext";
 import { Link } from "expo-router";
 

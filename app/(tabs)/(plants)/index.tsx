@@ -1,14 +1,6 @@
 import React, { useEffect } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  BackHandler,
-  Button,
-} from "react-native";
-import { Link, router, useRouter } from "expo-router";
+import { View, FlatList, BackHandler } from "react-native";
+import { router } from "expo-router";
 import { usePlants } from "./plantContext/PlantContext";
 import { useNavigation } from "@react-navigation/native";
 import theme from "@/assets/styles/theme";

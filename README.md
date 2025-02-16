@@ -4,6 +4,13 @@ This is a technical documentation for the Plant Photo App.
 The app was created as a homework assignment for NOCFO.
 Implemented with React Native.
 
+> [!NOTE]
+> In this update:
+> - Theme file with styles were added.
+> - Tab buttons are hidden when keyboard is used.
+> - Custom components were added to avoid code repetitions.
+> - Alerts are less agressive and inconcistent alert united in one custom component.
+
 ## Setting the environment
 
 1. Clone the repository.
@@ -71,20 +78,19 @@ The icons for web and mobile versions were desined and added to the app (icon ba
 
 The design is implemented with light and dark themes (automatically detecting the device theme of a user).
 
-Light theme colors: 
+Light theme colors:
 
-- #949D6A
-- #F2BB05
-- #F1EDEE
-- #2A2B2E
-
+- #949D6A - primary
+- #2A2B2E - secondary
+- #F1EDEE - base
+- #F2BB05 - accent
 
 Dark theme colors:
 
-- #5A6340
-- #B28500
-- #2E2A2B
-- #D7CDCC
+- #5A6340 - primary
+- #D7CDCC - secondary
+- #2E2A2B - base
+- #B28500 - accent
 
 ## Technical decisions
 

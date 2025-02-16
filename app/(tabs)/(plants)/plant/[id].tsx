@@ -53,8 +53,8 @@ export default function DetailView() {
       setIsEditing(false); // Once saved, the view will be switched to Detail mode
     } else {
       Alert.alert(
-        "Warning", // Making alert not too agressive
-        "Please, enter the plant name"
+        "Plant Name Required", // Making alert not too agressive
+        "Please, enter the name your plant"
       ); // User will receive an alert if plant name is missing
     }
   };
@@ -87,7 +87,7 @@ export default function DetailView() {
             imageStyle={style.image}
             imagePickerTextStyle={style.imagePickerText}
             imagePickerText={"Add plant picture (optional)"}
-            imagePredefined={plant?.plantPicture}
+            imagePredefined={plantPicture}
             onImageSelected={(imageUri) => setPlantPicture(imageUri)}
           />
 
