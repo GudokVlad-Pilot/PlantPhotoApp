@@ -1,7 +1,6 @@
 import React from "react";
 import { Stack } from "expo-router";
 import { PlantProvider } from "./plantContext/PlantContext";
-import { useColorScheme } from "react-native";
 import { useThemeColors } from "@/assets/styles/theme";
 
 export default function PlantsLayout() {
