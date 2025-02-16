@@ -6,7 +6,7 @@ Implemented with React Native.
 
 > [!NOTE]
 > In this update:
-> - Theme file with styles were added.
+> - Theme file with colors and styles was added.
 > - Tab buttons are hidden when keyboard is used.
 > - Custom components were added to avoid code repetitions.
 > - Alerts are less agressive and inconcistent alert united in one custom component.
@@ -105,13 +105,13 @@ Dark theme colors:
 ## Screenshots
 
 ### The List View
-![screenshot](/assets/screenshots/list_view.jpg)
+![Screenshot of the List View](/assets/screenshots/list_view.jpg)
 
 ### The Scan View
-![screenshot](/assets/screenshots/scan_view.jpg)
+![Screenshot of the Scan View](/assets/screenshots/scan_view.jpg)
 
 ### The bottom navigation bar
-![screenshot](/assets/screenshots/bottom_navigation_bar.jpg)
+![Screenshot of the bottom navigation bar](/assets/screenshots/bottom_navigation_bar.jpg)
 
 The rest of screenshots can be found in /assets/screenshots.
 

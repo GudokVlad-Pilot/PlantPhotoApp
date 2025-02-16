@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, ScrollView, Alert } from "react-native";
+import { View, Text, ScrollView, Alert } from "react-native";
 import { usePlants } from "../plantContext/PlantContext";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import theme from "@/assets/styles/theme";
 import CustomButton from "@/app/components/CustomButton";
 import CustomImagePicker from "@/app/components/CustomImagePicker";
 import CustomDetailInput from "@/app/components/CustomDetailInput";
+import CustomDisplayImage from "@/app/components/CustomDisplayImage";
 
 export default function DetailView() {
   // Theme defenition
@@ -127,18 +128,11 @@ export default function DetailView() {
               Added: {formatDate(addedAt)}
             </Text>
 
-            {/* If user added picture of the plant, it will be shown on the card. Otherwise, a placeholder will be displayed. */}
-            {plant?.plantPicture ? (
-              <Image
-                source={{ uri: plant?.plantPicture }}
-                style={style.detailImage}
-              />
-            ) : (
-              <Image
-                source={require("../../../../assets/images/plants.png")}
-                style={style.detailImage}
-              />
-            )}
+            {/* Plant picture or placeholder */}
+            <CustomDisplayImage
+              imagePredefined={plant?.plantPicture}
+              imageStyle={style.detailImage}
+            />
 
             {/* Plant name */}
             <Text style={style.detailName}>{plant?.name || ""}</Text>
