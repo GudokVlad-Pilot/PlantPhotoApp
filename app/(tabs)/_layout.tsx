@@ -4,11 +4,7 @@ import { useThemeColors } from "@/assets/styles/theme";
 
 export default function TabsLayout() {
   // Colors for bottom bar
-  const {
-      primary,
-      accent,
-      barElementColor,
-    } = useThemeColors();
+  const { primary, accent, barElementColor } = useThemeColors();
 
   return (
     // Navigation with tabs

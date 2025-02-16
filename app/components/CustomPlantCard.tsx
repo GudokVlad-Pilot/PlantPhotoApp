@@ -3,13 +3,13 @@ import {
   Text,
   StyleProp,
   TextStyle,
-  Image,
   ImageStyle,
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
 import { Plant } from "../(tabs)/(plants)/plantContext/PlantContext";
 import { Link } from "expo-router";
+import CustomDisplayImage from "./CustomDisplayImage";
 
 interface CustomCardProps {
   item: Plant;
@@ -45,15 +45,11 @@ const CustomPlantCard: React.FC<CustomCardProps> = ({
       asChild
     >
       <TouchableOpacity style={cardStyle}>
-        {/* If user added picture of the plant, it will be shown on the card. Otherwise, a placeholder will be displayed. */}
-        {item.plantPicture ? (
-          <Image source={{ uri: item.plantPicture }} style={cardImageStyle} />
-        ) : (
-          <Image
-            source={require("../../assets/images/plants.png")}
-            style={cardImageStyle}
-          />
-        )}
+        {/* Plant picture or placeholder */}
+        <CustomDisplayImage
+          imagePredefined={item?.plantPicture}
+          imageStyle={cardImageStyle}
+        />
 
         {/* Plant name */}
         <Text style={cardTextStyle}>{item.name}</Text>
